@@ -5,7 +5,7 @@ services:
     build: ./threads/
     image: threads_backend
     container_name: apiserver
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python makemigrations --noinput && python migrate --noinput && python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./threads:/app
     ports:
