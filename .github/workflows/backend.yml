@@ -22,11 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to server
-        uses: cross-the-world/ssh-pipeline@v1.2.0
+        uses: garygrossgarten/github-action-ssh@release
         with:
-          user: ${{ secrets.USER }}
+          command: ls -a
           host: ${{ secrets.BACKEND_IP }}
-          key: ${{ secrets.USERKEY }}
-          port: 22
-          script: |
-            docker-compose -f backend/docker-compose.yml up -d --build
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.USERKEY }}
