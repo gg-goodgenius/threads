@@ -28,10 +28,10 @@ jobs:
     steps:
       - name: Deploy to server
         uses: ironhalik/docker-over-ssh-action@v1
-          with:
-            user: ${{ secrets.USER }}
-            host: ${{ secrets.BACKEND_IP }}
-            key: ${{ secrets.USERKEY }}
-            port: 22
-            script: |
-              docker-compose -f backend/docker-compose.yml up -d --build
+        with:
+          user: ${{ secrets.USER }}
+          host: ${{ secrets.BACKEND_IP }}
+          key: ${{ secrets.USERKEY }}
+          port: 22
+          script: |
+            docker-compose -f backend/docker-compose.yml up -d --build
