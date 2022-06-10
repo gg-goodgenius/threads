@@ -1,4 +1,4 @@
-name: Django Deploy CD
+name: Django Deploy CI/CD
 
 on:
   push:
