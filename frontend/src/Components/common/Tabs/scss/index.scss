@@ -1,0 +1,7 @@
+@import "src/sass/index";
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: $grid-xl;
+}

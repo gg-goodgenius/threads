@@ -1,0 +1,19 @@
+@import 'src/sass/index';
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 80px;
+}
+
+.logo_container {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+}
+
+.title {
+  font-weight: $font-weight-800;
+  font-size: $font-size-24;
+}

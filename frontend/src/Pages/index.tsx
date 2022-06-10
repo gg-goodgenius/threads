@@ -16,19 +16,19 @@ const pages = {
         path: '/news'
     },
     Teams: {
-        element: <Teams />,
+        element: <Page><Teams /></Page>,
         path: '/teams'
     },
     About: {
-        element: <About />,
+        element: <Page><About /></Page>,
         path: '/about'
     },
     Page404: {
-        element: <Page404 />,
+        element:<Page><Page404 /></Page>,
         path: '/404'
     },
     Auth: {
-        element: <Auth />,
+        element: <Page><Auth /></Page>,
         path: '/auth'
     }
 }

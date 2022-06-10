@@ -1,7 +1,7 @@
 export const About = () => {
     return(
         <main>
-            <h1>404</h1>
+            <h1>About</h1>
         </main>
     );
 }
