@@ -109,4 +109,6 @@ AUTHENTICATION_BACKENDS = [
 
 GRAPHQL_JWT = {
     'JWT_ALLOW_ARGUMENT': True,
-}
+
+  CSRF_TRUSTED_ORIGINS = ['https://api.threads.goodgenius.ru']
+
