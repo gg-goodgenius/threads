@@ -7,8 +7,7 @@ from graphql_jwt.decorators import jwt_cookie
 
 
 urlpatterns = [
-    path('', include('core.urls')),
-    path('api/', jwt_cookie(GraphQLView.as_view(graphiql=True))),
+    path('', jwt_cookie(GraphQLView.as_view(graphiql=True))),
 ]
 
 if settings.ADMINSITE:
