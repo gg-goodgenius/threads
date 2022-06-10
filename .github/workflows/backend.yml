@@ -24,7 +24,7 @@ jobs:
       - name: Deploy to server
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: ls -a
+          command: bash update.sh
           host: ${{ secrets.BACKEND_IP }}
           username: ${{ secrets.USER }}
           privateKey: ${{ secrets.PRIVATE_KEY }}
