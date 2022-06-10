@@ -3,8 +3,7 @@ name: Django Deploy CD
 on:
   push:
     branches: [ backend ]
-  pull_request:
-    branches: [ main ]
+    
 jobs:
   build:
 
@@ -20,7 +19,7 @@ jobs:
           ref: backend
       - name: Run docker
         run: |
-          docker-compose up -d --build
+          docker-compose -f backend/docker-compose.yml up -d --build
   deploy:
   
     runs-on: ubuntu-latest
@@ -32,5 +31,4 @@ jobs:
           username: ${{ secrets.BACKEND_USER }}
           key: ${{ secrets.BACKEND_USERKEY }}
           script: |
-            docker-compose down 
-            docker-compose up --build -d
+            docker-compose -f backend/docker-compose.yml up -d --build
