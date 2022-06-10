@@ -1,1 +1,30 @@
+name: ReactJS Deploy CI/CD
 
+on:
+  push:
+    branches: [ frontend ]
+    
+  workflow_dispatch:
+    
+jobs:
+  build:
+
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: frontend
+      - name: Run docker
+        run: |
+          docker-compose -f frontend/docker-compose.yml up -d --build
+  deploy:
+  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: bash update.sh
+          host: ${{ secrets.FRONTEND_IP }}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.PRIVATE_KEY }}
