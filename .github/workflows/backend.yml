@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to server
-        uses: ironhalik/docker-over-ssh-action@v1
+        uses: cross-the-world/ssh-pipeline@v1.2.0
         with:
           user: ${{ secrets.USER }}
           host: ${{ secrets.BACKEND_IP }}
