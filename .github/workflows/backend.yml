@@ -30,7 +30,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.BACKEND_IP }}
-          username: ${{ secrets.BACKEND_USER }}
-          key: ${{ secrets.BACKEND_USERKEY }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.USERKEY }}
           script: |
             docker-compose -f backend/docker-compose.yml up -d --build
