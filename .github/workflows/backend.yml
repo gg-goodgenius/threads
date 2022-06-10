@@ -27,4 +27,4 @@ jobs:
           command: ls -a
           host: ${{ secrets.BACKEND_IP }}
           username: ${{ secrets.USER }}
-          privateKey: ${{ secrets.USERKEY }}
+          privateKey: ${{ secrets.PRIVATE_KEY }}
