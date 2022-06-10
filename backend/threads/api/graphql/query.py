@@ -24,9 +24,13 @@ class Query(graphene.ObjectType):
     getGroups = graphene.List(GroupGraphQLType, description='Получить список групп пользователей')
     getUser = graphene.Field(UserGraphQLType, id=graphene.Int(), description='Получить данные пользователя')
     getGroup = graphene.Field(GroupGraphQLType, id=graphene.Int(), description='Получить данные группы пользователей')
+    getVoid = graphene.List(UserGraphQLType, description='Получить список пользователей')
 
     @login_required
-    @permission_required('core.add_user')
+    def resolve_getVoid(root, info) -> QuerySet:
+        return _resolve_objects(User, info)
+
+    @login_required
     def resolve_getUsers(root, info) -> QuerySet:
         return _resolve_objects(User, info)
 
