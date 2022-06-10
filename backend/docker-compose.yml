@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  back:
+    build: ./threads/
+    image: threads_backend
+    container_name: apiserver
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./threads:/app
+    ports:
+      - "8000:8000"
