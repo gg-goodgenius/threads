@@ -30,7 +30,7 @@ jobs:
         uses: pcjun97/action-setup-docker-host-ssh@v1
         with:
           host: ${{ secrets.BACKEND_IP }}
-          username: ${{ secrets.USER }}
+          user: ${{ secrets.USER }}
           key: ${{ secrets.USERKEY }}
           script: |
             docker-compose -f backend/docker-compose.yml up -d --build
