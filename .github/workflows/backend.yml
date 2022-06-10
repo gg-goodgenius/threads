@@ -6,7 +6,23 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
+  build:
+
+      runs-on: ubuntu-latest
+      strategy:
+        max-parallel: 2
+        matrix:
+          python-version: [3.9, 3.10]
+
+      steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: backend
+      - name: Run docker
+        run: |
+          docker-compose up -d --build
   deploy:
+  
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to server
