@@ -1,0 +1,9 @@
+version: "3"
+services:
+  client:
+    build: ./test-app
+    volumes:
+      - ./test-app:/home/node/app
+    ports:
+      - "80:80"
+    container_name: reactjs

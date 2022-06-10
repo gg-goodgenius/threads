@@ -6,9 +6,6 @@ import icon from "./icon.svg";
 import './scss/index.scss'
 
 export const Header = () => {
-
-    const nav = useNavigate();
-
     return (
         <div className='Header'>
             <div className='logo_container'>

@@ -1,0 +1,7 @@
+@import "src/sass/index";
+
+.card {
+  display: inline-block;
+  background-color: $color-shape;
+  border-radius: $border-radius-m;
+}
