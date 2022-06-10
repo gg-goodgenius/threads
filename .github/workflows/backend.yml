@@ -1,0 +1,30 @@
+name: Django Deploy CI/CD
+
+on:
+  push:
+    branches: [ backend ]
+    
+  workflow_dispatch:
+    
+jobs:
+  build:
+
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: backend
+      - name: Run docker
+        run: |
+          docker-compose -f backend/docker-compose.yml up -d --build
+  deploy:
+  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: ls -a
+          host: ${{ secrets.BACKEND_IP }}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.PRIVATE_KEY }}

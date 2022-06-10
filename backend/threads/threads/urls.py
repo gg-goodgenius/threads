@@ -10,6 +10,5 @@ urlpatterns = [
     path('', jwt_cookie(GraphQLView.as_view(graphiql=True))),
 ]
 
-
 if settings.ADMINSITE:
     urlpatterns.append(path('admin/', admin.site.urls))
