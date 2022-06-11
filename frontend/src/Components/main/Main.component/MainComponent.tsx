@@ -11,7 +11,7 @@ export const MainComponent = () => {
         <div className='page-main'>
             <div className='left'>
                 <div className='top'>
-                    <h1 className='supertitle'>🔥 Все волонтерства</h1>
+                    <h1 className='supertitle'>{!isTrainee ? '🔥 Все волонтерства' : '⚡ Все стажировки'}</h1>
                     <div className='switch'>
                         <PrimaryButton onClick={() => setIsTrainee(false)} bgColor={isTrainee ? '#fff' : ''}>Волонтерства</PrimaryButton>
                         <PrimaryButton onClick={() => setIsTrainee(true)} bgColor={!isTrainee ? '#fff' : ''}>Стажировки</PrimaryButton>

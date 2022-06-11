@@ -3,9 +3,22 @@
 .primary-button {
     border-radius: $border-radius-m;
     background-color: $color-primary;
-    color: #fff
+    color: #fff;
+
+    .s {
+        border-radius: $border-radius-s;
+    }
+
+    .l {
+        border-radius: $border-radius-l;
+    }
+
+    .full {
+        width: 100%;
+    }
 }
 
 .primary-button:focus {
     background-color: $color-primary !important;
+    color: #fff
 }

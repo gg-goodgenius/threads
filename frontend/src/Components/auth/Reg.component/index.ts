@@ -1,0 +1,1 @@
+export {RegComponent} from './RegComponent';

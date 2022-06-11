@@ -1,7 +1,5 @@
+import {AuthContainer} from "../Components/auth/Auth.container";
+
 export const Auth = () => {
-    return(
-        <main>
-            <h1>Auth</h1>
-        </main>
-    );
+    return(<AuthContainer />);
 }
