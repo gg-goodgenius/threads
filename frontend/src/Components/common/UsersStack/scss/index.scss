@@ -1,0 +1,20 @@
+.users-stack {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.photo:first-child {
+  left: 0;
+}
+
+.photo {
+  border: 2px solid #fff;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 10px;
+  border-radius: 50%;
+}

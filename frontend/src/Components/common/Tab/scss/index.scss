@@ -1,0 +1,13 @@
+@import 'src/sass/index';
+
+.tab {
+  font-weight: $font-weight-base;
+  font-size: $font-size-16;
+  color: $color-grey-100;
+
+  &.active {
+    color: $color-text-primary;
+    border-bottom: 2px solid $color-underline;
+    padding-bottom: 15px;
+  }
+}

@@ -1,0 +1,14 @@
+@import "src/sass/index";
+
+.page-main {
+  margin-top: 21px;
+}
+
+.banner {
+  padding: 48px;
+
+  .title {
+    color: $color-text-primary;
+    font-weight: $font-weight-800;
+  }
+}
