@@ -22,7 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django',
     'core',
-    'graphql'
+    'graphql',
+    'events'
 ]
 
 MIDDLEWARE = [

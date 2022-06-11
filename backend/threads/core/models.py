@@ -40,6 +40,11 @@ class User(AbstractUser):
         null=True,
         blank=True,
     )
+
+    type_account = models.IntegerField(
+        verbose_name='Тип аккаунта',
+        default=0
+    )
     REQUIRED_FIELDS = []
     USERNAME_FIELD = 'email'
     objects = UserManager()
