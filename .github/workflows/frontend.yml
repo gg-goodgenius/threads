@@ -21,6 +21,9 @@ jobs:
   
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: frontend
       - name: Deploy to server
         uses: garygrossgarten/github-action-ssh@release
         with:
