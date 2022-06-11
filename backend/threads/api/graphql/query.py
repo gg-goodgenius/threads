@@ -4,15 +4,20 @@ from graphql_jwt.decorators import login_required, permission_required, staff_me
 from django.contrib.auth.models import Group
 
 # user modules
-from api.graphql.types import UserGraphQLType, GroupGraphQLType
+from api.graphql.types import (
+                                InternEventGraphQLType,
+                                UserGraphQLType, 
+                                GroupGraphQLType, 
+                                VolunteerEventGraphQLType,
+                                InternEventGraphQLType
+                                )
 from core.models import User
+from events.models import VolunteerEvent, InternEvent
 
-def _resolve_objects(cls, info):
-    user = info.context.user
-    print(user.has_perm('core.add_user'))
+def _resolve_objects(cls, info) -> QuerySet:
     return cls.objects.all()
 
-def _resolve_object_by_id(cls, info, id) -> QuerySet | None:
+def _resolve_object_by_id(cls, info, id) -> object | None:
     if id:
         return cls.objects.get(pk=id)
     else:
@@ -20,11 +25,16 @@ def _resolve_object_by_id(cls, info, id) -> QuerySet | None:
 
 
 class Query(graphene.ObjectType):
-    getUsers = graphene.List(UserGraphQLType, description='Получить список пользователей')
-    getGroups = graphene.List(GroupGraphQLType, description='Получить список групп пользователей')
-    getUser = graphene.Field(UserGraphQLType, id=graphene.Int(), description='Получить данные пользователя')
-    getGroup = graphene.Field(GroupGraphQLType, id=graphene.Int(), description='Получить данные группы пользователей')
-    getVoid = graphene.List(UserGraphQLType, description='Получить список пользователей')
+    getUsers = graphene.List(UserGraphQLType, description='Список пользователей')
+    getGroups = graphene.List(GroupGraphQLType, description='Список групп пользователей')
+    getVolunteerEvents = graphene.List(VolunteerEventGraphQLType, description='Список волонтерств')
+    getInternEvents = graphene.List(InternEventGraphQLType, description='Список стажировок')
+
+    getUser = graphene.Field(UserGraphQLType, id=graphene.Int(), description='Пользователь')
+    getGroup = graphene.Field(GroupGraphQLType, id=graphene.Int(), description='Группа пользователей')
+    getVolunteerEvent = graphene.Field(VolunteerEventGraphQLType, id=graphene.Int(), description='Волонтерство')
+    getInternEvent = graphene.Field(InternEventGraphQLType, id=graphene.Int(), description='Стажировка')
+
 
     @login_required
     def resolve_getUsers(root, info) -> QuerySet:
@@ -33,14 +43,26 @@ class Query(graphene.ObjectType):
     @login_required
     def resolve_getGroups(root, info) -> QuerySet:
         return _resolve_objects(Group, info)
+    
+    def resolve_getVolunteerEvents(root, info) -> QuerySet:
+        return _resolve_objects(VolunteerEvent, info)
+    
+    def resolve_getInternEvents(root, info) -> QuerySet:
+        return _resolve_objects(InternEvent, info)
 
     @login_required
-    def resolve_getUser(root, info, id):
+    def resolve_getUser(root, info, id) -> object | None:
         return _resolve_object_by_id(User, info, id)
 
     @login_required
-    def resolve_getGroup(root, info, id):
+    def resolve_getGroup(root, info, id) -> object | None:
         return _resolve_object_by_id(Group, info, id)
+        
+    def resolve_getVolunteerEvent(root, info, id) -> object | None:
+        return _resolve_object_by_id(VolunteerEvent, info, id)
+
+    def resolve_getInternEvent(root, info, id) -> object | None:
+        return _resolve_object_by_id(InternEvent, info, id)
 
 
     class Meta:

@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group
 from api.graphql.types import UserGraphQLType
 
 class RegistrationUser(graphene.Mutation):
+    ''' Мутация для регистрации пользователя '''
     class Arguments:
         email = graphene.String(required=True, description='Электронная почта пользователя')
         password = graphene.String(required=True, description='Пароль пользователя')
@@ -18,21 +19,32 @@ class RegistrationUser(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, email, password, type_account):
-        new_user = User(email=email, type_account=type_account)
-        new_user.set_password(password)
-        new_user.save()
-        if type_account == 0:
-            group =  Group.objects.filter(name='Волонтер').first()
-        elif type_account == 1:
-            group =  Group.objects.filter(name='НКО').first()
-        else:
-            group =  Group.objects.filter(name='Бизнес').first()
-        new_user.groups.add(group)
-        new_user.save()
-        ok = True
+        try:
+            new_user = User(email=email, type_account=type_account)
+            new_user.set_password(password)
+            new_user.save()
+        except Exception as e:
+            raise 
+        try:
+            if type_account == 0:
+                group =  Group.objects.filter(name='Волонтер').first()
+            elif type_account == 1:
+                group =  Group.objects.filter(name='НКО').first()
+            else:
+                group =  Group.objects.filter(name='Бизнес').first()
+            if not group:
+                raise Exception('Add group error')
+            new_user.groups.add(group)
+            new_user.save()
+            ok = True
+            
+        except Exception as e:
+            new_user.delete()
+            raise
         return RegistrationUser(ok=ok, user=new_user)
-        
-        
+
+
+
 
 
 
