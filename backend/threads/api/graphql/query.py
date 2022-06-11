@@ -27,10 +27,6 @@ class Query(graphene.ObjectType):
     getVoid = graphene.List(UserGraphQLType, description='Получить список пользователей')
 
     @login_required
-    def resolve_getVoid(root, info) -> QuerySet:
-        return _resolve_objects(User, info)
-
-    @login_required
     def resolve_getUsers(root, info) -> QuerySet:
         return _resolve_objects(User, info)
 
