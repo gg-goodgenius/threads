@@ -23,7 +23,9 @@ INSTALLED_APPS = [
     'graphene_django',
     'core',
     'graphql',
-    'events'
+    'events',
+    'publication',
+    'community'
 ]
 
 MIDDLEWARE = [
