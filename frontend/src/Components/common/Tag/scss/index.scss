@@ -1,0 +1,9 @@
+@import "src/sass/index";
+
+.tag {
+  color: $color-text-primary;
+  font-weight: $font-weight-base;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 4px 10px;
+}

@@ -1,0 +1,11 @@
+@import "src/sass/index";
+
+.tag-date {
+  padding: 4px 10px;
+  border: 1px solid #2C2D37;
+  border-radius: 4px;
+
+  color: $color-grey-100;
+  font-size: 12px;
+  font-weight: $font-weight-base;
+}
