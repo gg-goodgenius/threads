@@ -3,4 +3,9 @@
 .primary-button {
     border-radius: $border-radius-m;
     background-color: $color-primary;
+    color: #fff
+}
+
+.primary-button:focus {
+    background-color: $color-primary !important;
 }
