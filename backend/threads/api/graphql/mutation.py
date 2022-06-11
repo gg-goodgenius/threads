@@ -1,9 +1,17 @@
 import graphene
+import graphene_django
 import graphql_jwt
 
-from api.graphql.mutations.user import RegistrationUser
-from api.graphql.mutations.volunteer_event import CreateVolunteerEventMutation, UpdateVolunteerEventMutation, DeleteVolunteerEventMutation
-from api.graphql.mutations.intern_event import CreateInternEventMutation, UpdateInternEventMutation, DeleteInternEventMutation
+from api.graphql.mutations.core.user import *
+from api.graphql.mutations.events.volunteer_event import *
+from api.graphql.mutations.events.intern_event import *
+from api.graphql.mutations.events.contact import *
+from api.graphql.mutations.events.metro import *
+from api.graphql.mutations.events.photo import *
+from api.graphql.mutations.events.report import *
+from api.graphql.mutations.events.shedule import *
+from api.graphql.mutations.events.tag import *
+
 
 
 
@@ -20,3 +28,30 @@ class Mutation(graphene.ObjectType):
     create_intern_event = CreateInternEventMutation.Field()
     update_intern_event = UpdateInternEventMutation.Field()
     delete_intern_event = DeleteInternEventMutation.Field()
+
+    create_contact = CreateContactMutation.Field()
+    update_contact = UpdateContactMutation.Field()
+    delete_contact = DeleteContactMutation.Field()
+
+    create_metro = CreateMetroMutation.Field()
+    update_metro = UpdateMetroMutation.Field()
+    delete_metro = DeleteMetroMutation.Field()
+
+    create_photo = CreatePhotoMutation.Field()
+    update_photo = UpdatePhotoMutation.Field()
+    delete_photo = DeletePhotoMutation.Field()
+
+    create_report = CreateReportMutation.Field()
+    update_report = UpdateReportMutation.Field()
+    delete_report = DeleteReportMutation.Field()
+
+    create_shedule = CreateScheduleMutation.Field()
+    update_shedule = UpdateScheduleMutation.Field()
+    delete_shedule = DeleteScheduleMutation.Field()
+
+    create_tag_event = CreateTagMutation.Field()
+    update_tag_event = UpdateTagMutation.Field()
+    delete_tag_event = DeleteTagMutation.Field()
+
+
+

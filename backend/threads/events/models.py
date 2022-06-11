@@ -43,9 +43,9 @@ class Event(models.Model):
 
     skills = models.TextField(verbose_name='Необходимые навыки', blank=True, null=True)
     age_limits_min = models.IntegerField(verbose_name='Минимальные ограничения возраста', default=16)
-    members = models.ManyToManyField(verbose_name='Учатсники', to=User, blank=True, null=True)
+    members = models.ManyToManyField(verbose_name='Учатсники', to=User)
     
-    contacts = models.ManyToManyField(verbose_name='Контакты', to=Contact, blank=True, null=True)
+    contacts = models.ManyToManyField(verbose_name='Контакты', to=Contact)
     metro = models.ForeignKey(to=Metro, on_delete=models.SET_NULL, blank=True, null=True, )
     address = models.CharField(max_length=300, verbose_name='Адрес')
     
