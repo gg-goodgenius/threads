@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from events.models import InternEvent, VolunteerEvent
 
 # Раздел описание моделей с пользователями
 
@@ -31,20 +32,14 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     ''' Класс  пользователей '''
     username = None
-    email = models.EmailField(
-        unique=True,
-    )
-    middle_name = models.CharField(
-        verbose_name='Отчество',
-        max_length=190,
-        null=True,
-        blank=True,
-    )
-
-    type_account = models.IntegerField(
-        verbose_name='Тип аккаунта',
-        default=0
-    )
+    email = models.EmailField(unique=True)
+    middle_name = models.CharField(verbose_name='Отчество', max_length=190,  null=True, blank=True)
+    type_account = models.IntegerField(verbose_name='Тип аккаунта', default=0)
+    telegram = models.CharField(max_length=300, verbose_name='telegram')
+    phone = models.CharField(max_length=15, verbose_name='номер телефона')
+    description = models.TextField(verbose_name='Описание')
+    # favorite_intern_events = models.ForeignKey(to=InternEvent, on_delete=models.SET_NULL, related_name='users', verbose_name='Избранные стажировки')
+    # favorite_volunteer_events = models.ForeignKey(to=VolunteerEvent, on_delete=models.SET_NULL, related_name='users', verbose_name='Избранные волонтерства')
     REQUIRED_FIELDS = []
     USERNAME_FIELD = 'email'
     objects = UserManager()

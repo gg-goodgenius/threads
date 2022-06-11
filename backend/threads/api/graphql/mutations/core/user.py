@@ -5,7 +5,7 @@ from core.models import User
 from django.contrib.auth.models import Group
 
 class RegistrationUser(graphene.Mutation):
-    ''' Мутация для регистрации пользователя '''
+    '''Регистрации пользователя '''
     class Arguments:
         email = graphene.String(required=True, description='Электронная почта пользователя')
         password = graphene.String(required=True, description='Пароль пользователя')
@@ -18,7 +18,7 @@ class RegistrationUser(graphene.Mutation):
     user = graphene.Field(UserGraphQLType, description='Зарегистрированный пользователь')
 
     @classmethod
-    def mutate(cls, root, info, email, password, type_account):
+    def mutate(cls, root, info, email, password, type_account) -> graphene.Mutation:
         try:
             new_user = User(email=email, type_account=type_account)
             new_user.set_password(password)

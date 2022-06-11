@@ -2,7 +2,6 @@ from distutils.command.upload import upload
 from django.db import models
 from core.models import User
 
-
 class Tag(models.Model):
     ''' Хештеги для поиска по мероприятиям '''
     name = models.CharField(max_length=300, verbose_name='Тэг')
@@ -31,7 +30,6 @@ class Event(models.Model):
     ''' Абстрактная модель мероприятия '''
     class Meta:
         abstract=True
-    
 
     image = models.ImageField(verbose_name='Изображение', blank=True, null=True)
     title = models.CharField(max_length=300, verbose_name='Заголовок')
@@ -50,6 +48,9 @@ class Event(models.Model):
     address = models.CharField(max_length=300, verbose_name='Адрес')
     
     is_template = models.BooleanField(verbose_name='Это шаблон', default=False)
+
+    def get_coutn_members(self):
+        return self.members.all().count()
     
 
 

@@ -7,7 +7,7 @@ from django.contrib.auth.models import Group
 from api.graphql.types import *
 from core.models import User
 
-
+# Общие функции для получения списка и объекта определенного класса
 def _resolve_objects(cls, info) -> QuerySet:
     return cls.objects.all()
 
@@ -19,6 +19,7 @@ def _resolve_object_by_id(cls, info, id) -> object | None:
 
 
 class Query(graphene.ObjectType):
+    ''' Запросы '''
     # List
     getUsers = graphene.List(UserGraphQLType, description='Список пользователей')
     getGroups = graphene.List(GroupGraphQLType, description='Список групп пользователей')
@@ -44,8 +45,7 @@ class Query(graphene.ObjectType):
     getPhoto = graphene.Field(PhotoGraphQLType, id=graphene.Int(), description='Фотография')
     getReport = graphene.Field(ReportGraphQLType, id=graphene.Int(), description='Отчет')
 
-
-
+    # определяем resolvers
     @login_required
     def resolve_getUsers(root, info) -> QuerySet:
         return _resolve_objects(User, info)

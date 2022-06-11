@@ -1,3 +1,5 @@
+from lib2to3.pgen2 import grammar
+import graphene
 from graphene_django import DjangoObjectType
 from django.contrib.auth.models import Group
 
@@ -15,17 +17,28 @@ class GroupGraphQLType(DjangoObjectType):
         model = Group
         description = 'Группа пользователей'
 
+    
+
 
 class VolunteerEventGraphQLType(DjangoObjectType):
     class Meta:
         model = VolunteerEvent
         description = 'Волонтерство'
 
+    member_count = graphene.Int(description='Количество учатсников')
+    def resolve_member_count(self, info):
+        return self.get_coutn_members()
+        
+
 
 class InternEventGraphQLType(DjangoObjectType):
     class Meta:
         model = InternEvent
         description = 'Стажировка'
+
+    member_count = graphene.Int(description='Количество учатсников')
+    def resolve_member_count(self, info):
+        return self.get_coutn_members()
 
 
 class ContactGraphQLType(DjangoObjectType):

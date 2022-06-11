@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     'core',
     'graphql',
     'events',
+    'publication',
+    'community'
 ]
 
 MIDDLEWARE = [
