@@ -8,11 +8,11 @@ from api.graphql.types import (
                                 InternEventGraphQLType,
                                 UserGraphQLType, 
                                 GroupGraphQLType, 
-                                VolunteerEventGraphQLType,
-                                InternEventGraphQLType
+                                VolunteerEvent, 
+                                InternEvent,
+                                VolunteerEventGraphQLType
                                 )
 from core.models import User
-from events.models import VolunteerEvent, InternEvent
 
 def _resolve_objects(cls, info) -> QuerySet:
     return cls.objects.all()
@@ -45,23 +45,22 @@ class Query(graphene.ObjectType):
         return _resolve_objects(Group, info)
     
     def resolve_getVolunteerEvents(root, info) -> QuerySet:
-        return _resolve_objects(VolunteerEvent, info)
-    
-    def resolve_getInternEvents(root, info) -> QuerySet:
-        return _resolve_objects(InternEvent, info)
+        return _resolve_objects(Group, info)
 
     @login_required
-    def resolve_getUser(root, info, id) -> object | None:
+    def resolve_getUser(root, info, id) -> object:
         return _resolve_object_by_id(User, info, id)
 
     @login_required
-    def resolve_getGroup(root, info, id) -> object | None:
+    def resolve_getGroup(root, info, id) -> object:
         return _resolve_object_by_id(Group, info, id)
-        
-    def resolve_getVolunteerEvent(root, info, id) -> object | None:
+
+    @login_required
+    def resolve_getVolunteerEvent(root, info, id) -> object:
         return _resolve_object_by_id(VolunteerEvent, info, id)
 
-    def resolve_getInternEvent(root, info, id) -> object | None:
+    @login_required
+    def resolve_getInternEvent(root, info, id) -> object:
         return _resolve_object_by_id(InternEvent, info, id)
 
 
