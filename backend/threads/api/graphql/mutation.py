@@ -3,6 +3,7 @@ import graphene_django
 import graphql_jwt
 from graphql_jwt.mutations import token_auth
 
+
 from api.graphql.mutations.core.user import *
 from api.graphql.mutations.events.volunteer_event import *
 from api.graphql.mutations.events.intern_event import *
