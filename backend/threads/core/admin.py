@@ -4,7 +4,7 @@ from core.models import User
 
 class cUserAdmin(UserAdmin):
     fieldsets = (('Основная информация', {'fields': ('email', 'password')}),
-                 ('Персональные данные', {'fields': ('last_name', 'first_name', 'middle_name')}),
+                 ('Персональные данные', {'fields': ('last_name', 'first_name', 'middle_name', 'image', 'status')}),
                  ('Права', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
                  ('Важные данные', {'fields': ('last_login', 'date_joined')}))
     add_fieldsets = ((None, {'classes': ('wide',), 'fields': ('email', 'password1', 'password2')}),)
