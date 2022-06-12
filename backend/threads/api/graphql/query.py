@@ -55,7 +55,7 @@ class Query(graphene.ObjectType):
         return _resolve_objects(Group, info)
     
     def resolve_getVolunteerEvents(root, info) -> QuerySet:
-        return _resolve_objects(Group, info)
+        return _resolve_objects(VolunteerEvent, info)
     
     def resolve_getInternEvents(root, info) -> QuerySet:
         return _resolve_objects(InternEvent, info)

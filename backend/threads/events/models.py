@@ -111,8 +111,6 @@ class VolunteerEvent(Event):
         verbose_name = 'Волотерство'
         verbose_name_plural = 'Волотерства'
 
-    
-    
 
 class InternEvent(Event):
     ''' Мероприятия для стажеров '''
@@ -167,3 +165,5 @@ class Report(models.Model):
 
     def __str__(self) -> str:
         return f'{self.document.url}'
+
+
