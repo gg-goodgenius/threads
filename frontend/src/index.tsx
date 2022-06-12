@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 );
 
 const httpLink = new HttpLink({
-    uri: 'https://api.threads.goodgenius.ru/graphql'
+    uri: 'https://api.threads.goodgenius.ru'
 });
 
 const authLink = setContext(async (_, { headers }) => {
@@ -21,7 +21,7 @@ const authLink = setContext(async (_, { headers }) => {
     return {
         headers: {
             ...headers,
-            authorization: token ? `Bearer ${token}` : "",
+            authorization: token ? `JWT ${token}` : "",
         }
     }
 });

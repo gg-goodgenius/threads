@@ -116,7 +116,9 @@ type InternEventGraphQLType {
     ageLimitsMin: Int!
     contacts: [ContactGraphQLType!]!
     dateEndRequest: Date
+    dateStartRequest: Date
     description: String
+    descriptionOther: String
     id: ID!
     image: String
     isTemplate: Boolean!
@@ -127,7 +129,6 @@ type InternEventGraphQLType {
     organization: UserGraphQLType!
     paycheck: Int!
     provide: String
-    skills: String
     skillsExtra: String
     tags: [TagGraphQLType!]!
     title: String!
@@ -250,8 +251,8 @@ type Refresh {
 type RegistrationUser {
     "Результат регистрации"
     ok: Boolean
-    "Зарегистрированный пользователь"
-    user: UserGraphQLType
+    "Токен"
+    token: String
 }
 
 "Отчет"
@@ -271,6 +272,7 @@ type ScheduleGraphQLType {
 
 "Тег"
 type TagGraphQLType {
+    color: String!
     id: ID!
     interneventSet: [InternEventGraphQLType!]!
     name: String!
@@ -317,7 +319,8 @@ type UserGraphQLType {
     firstName: String!
     "Группы, к которым принадлежит данный пользователь. Пользователь получит все права, указанные в каждой из его/её групп."
     groups: [GroupGraphQLType!]!
-    id: ID!
+    id: Int
+    image: String
     internEvents: [InternEventGraphQLType!]!
     interneventSet: [InternEventGraphQLType!]!
     "Отметьте, если пользователь должен считаться активным. Уберите эту отметку вместо удаления учётной записи."
@@ -331,6 +334,7 @@ type UserGraphQLType {
     middleName: String
     password: String!
     phone: String!
+    status: String
     telegram: String!
     typeAccount: Int!
     volunteerEvents: [VolunteerEventGraphQLType!]!
@@ -349,7 +353,9 @@ type VolunteerEventGraphQLType {
     contacts: [ContactGraphQLType!]!
     dateEndRequest: Date
     dateEvent: DateTime
+    dateStartRequest: Date
     description: String
+    descriptionOther: String
     events: [ScheduleGraphQLType!]!
     id: ID!
     image: String
@@ -358,11 +364,11 @@ type VolunteerEventGraphQLType {
     memberCount: Int
     members: [UserGraphQLType!]!
     metro: MetroGraphQLType
+    motivation: String
     organization: UserGraphQLType!
     personalNeeded: String
     photes: [PhotoGraphQLType!]!
     provide: String
-    skills: String
     tags: [TagGraphQLType!]!
     title: String!
 }
@@ -410,15 +416,17 @@ input CreateInternEventInput {
     ageLimitsMin: Int
     contacts: [ID]!
     dateEndRequest: Date
+    dateStartRequest: Date
     description: String
-    image: Upload
+    descriptionOther: String
+    image: String
     isTemplate: Boolean
     members: [ID]!
     metro: ID
     organization: ID!
     paycheck: Int
     provide: String
-    skills: String
+    skills: [ID]!
     skillsExtra: String
     tags: [ID]!
     title: String!
@@ -448,6 +456,7 @@ input CreateScheduleInput {
 }
 
 input CreateTagInput {
+    color: String
     commands: [ID]
     interneventSet: [ID]
     name: String!
@@ -462,17 +471,20 @@ input CreateVolunteerEventInput {
     contacts: [ID]!
     dateEndRequest: Date
     dateEvent: DateTime
+    dateStartRequest: Date
     description: String
+    descriptionOther: String
     events: [ID]
-    image: Upload
+    image: String
     isTemplate: Boolean
     members: [ID]!
     metro: ID
+    motivation: String
     organization: ID!
     personalNeeded: String
     photes: [ID]
     provide: String
-    skills: String
+    skills: [ID]!
     tags: [ID]!
     title: String!
 }
@@ -489,15 +501,17 @@ input UpdateInternEventInput {
     ageLimitsMin: Int
     contacts: [ID]!
     dateEndRequest: Date
+    dateStartRequest: Date
     description: String
-    image: Upload
+    descriptionOther: String
+    image: String
     isTemplate: Boolean
     members: [ID]!
     metro: ID
     organization: ID!
     paycheck: Int
     provide: String
-    skills: String
+    skills: [ID]!
     skillsExtra: String
     tags: [ID]!
     title: String!
@@ -527,6 +541,7 @@ input UpdateScheduleInput {
 }
 
 input UpdateTagInput {
+    color: String
     commands: [ID]
     interneventSet: [ID]
     name: String!
@@ -541,17 +556,20 @@ input UpdateVolunteerEventInput {
     contacts: [ID]!
     dateEndRequest: Date
     dateEvent: DateTime
+    dateStartRequest: Date
     description: String
+    descriptionOther: String
     events: [ID]
-    image: Upload
+    image: String
     isTemplate: Boolean
     members: [ID]!
     metro: ID
+    motivation: String
     organization: ID!
     personalNeeded: String
     photes: [ID]
     provide: String
-    skills: String
+    skills: [ID]!
     tags: [ID]!
     title: String!
 }

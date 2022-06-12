@@ -1,17 +1,20 @@
 import React, {createContext, useEffect, useState} from "react";
 import {gql, useLazyQuery} from "@apollo/client";
 import {GetUser} from "./__generated__/GetUser";
+import { useGetUser } from "../Components/common/hooks/useGetUser";
 
 export const UserContext = createContext<{
     user?: User | null,
-    setUser?: ((e: User) => void) | null
+    setUser: (e: User | null) => void,
+    updateUser: () => void
 }>({
     user: null,
-    setUser: null
+    setUser: () => {},
+    updateUser: () => {}
 });
 
 interface User {
-    id: string
+    id: number
 }
 
 type Props = {
@@ -19,14 +22,28 @@ type Props = {
 }
 
 export const UserState = (props: Props) => {
-    const [getUser] = useLazyQuery<GetUser>(GET_USER)
-    const [user, setUser] = useState<User>();
+    const getUser = useGetUser();
+    const [user, setUser] = useState<User | null>(null);
+
+    const updateUser = () => {
+        const fetchUser = async () => {
+            const res = await getUser();
+            if(res.data?.user?.id) {
+                setUser({ id: res.data.user.id });
+            } else {
+                console.log('error get user')
+            }
+        }
+        if(localStorage.getItem('token')) {
+            fetchUser().then();
+        }
+    }
 
     useEffect(() => {
         const fetchUser = async () => {
             const res = await getUser();
-            if(res.data?.getUser) {
-                setUser(res.data.getUser);
+            if(res.data?.user?.id) {
+                setUser({ id: res.data.user.id });
             } else {
                 console.log('error get user')
             }
@@ -40,20 +57,11 @@ export const UserState = (props: Props) => {
         <UserContext.Provider
             value={{
                 user,
-                setUser
+                setUser,
+                updateUser
             }}
         >
             {props.children}
         </UserContext.Provider>
     );
 }
-
-const GET_USER = gql`
-    query GetUser {
-        getUser {
-            id
-            firstName
-            lastName
-        }
-    }
-`;

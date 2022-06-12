@@ -10,15 +10,16 @@ import {Link} from "react-router-dom";
 import { ReactComponent as Back} from "../../../icons/back.svg";
 
 type Props = {
-    setIsLogin: (e: boolean) => void
+    setIsLogin: (e: boolean) => void,
+    handleReg: (e: any) => void
 }
 
-export const RegComponent = ({ setIsLogin }: Props) => {
+export const RegComponent = ({ setIsLogin, handleReg }: Props) => {
 
     const [form] = Form.useForm();
 
     const handleClickReg = () => {
-        console.log(form.getFieldsValue());
+        handleReg(form.getFieldsValue());
     }
 
     return (

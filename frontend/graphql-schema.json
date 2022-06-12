@@ -439,16 +439,12 @@
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -694,6 +690,30 @@
             "deprecationReason": null
           },
           {
+            "name": "status",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "volunteerEvents",
             "description": "",
             "args": [],
@@ -797,8 +817,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "ID",
-        "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
@@ -909,8 +929,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "name": "ID",
+        "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
@@ -1017,6 +1037,18 @@
             "deprecationReason": null
           },
           {
+            "name": "dateStartRequest",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "provide",
             "description": "",
             "args": [],
@@ -1029,7 +1061,7 @@
             "deprecationReason": null
           },
           {
-            "name": "skills",
+            "name": "descriptionOther",
             "description": "",
             "args": [],
             "type": {
@@ -1189,6 +1221,18 @@
             "deprecationReason": null
           },
           {
+            "name": "motivation",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "dateEvent",
             "description": "",
             "args": [],
@@ -1290,6 +1334,22 @@
           },
           {
             "name": "name",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "color",
             "description": "",
             "args": [],
             "type": {
@@ -1457,6 +1517,18 @@
             "deprecationReason": null
           },
           {
+            "name": "dateStartRequest",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "provide",
             "description": "",
             "args": [],
@@ -1469,7 +1541,7 @@
             "deprecationReason": null
           },
           {
-            "name": "skills",
+            "name": "descriptionOther",
             "description": "",
             "args": [],
             "type": {
@@ -3235,12 +3307,12 @@
             "deprecationReason": null
           },
           {
-            "name": "user",
-            "description": "Зарегистрированный пользователь",
+            "name": "token",
+            "description": "Токен",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "UserGraphQLType",
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3285,10 +3357,10 @@
         "inputFields": [
           {
             "name": "image",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "SCALAR",
-              "name": "Upload",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -3356,6 +3428,18 @@
             "deprecationReason": null
           },
           {
+            "name": "dateStartRequest",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "provide",
             "description": "",
             "type": {
@@ -3368,7 +3452,7 @@
             "deprecationReason": null
           },
           {
-            "name": "skills",
+            "name": "descriptionOther",
             "description": "",
             "type": {
               "kind": "SCALAR",
@@ -3512,12 +3596,44 @@
             "deprecationReason": null
           },
           {
+            "name": "motivation",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "dateEvent",
             "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "skills",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -3561,17 +3677,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "Upload",
-        "description": "Create scalar that ignores normal serialization/deserialization, since\nthat will be handled by the multipart request spec",
-        "specifiedByUrl": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "UpdateVolunteerEventMutation",
         "description": null,
@@ -3604,10 +3709,10 @@
         "inputFields": [
           {
             "name": "image",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "SCALAR",
-              "name": "Upload",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -3675,6 +3780,18 @@
             "deprecationReason": null
           },
           {
+            "name": "dateStartRequest",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "provide",
             "description": "",
             "type": {
@@ -3687,7 +3804,7 @@
             "deprecationReason": null
           },
           {
-            "name": "skills",
+            "name": "descriptionOther",
             "description": "",
             "type": {
               "kind": "SCALAR",
@@ -3831,12 +3948,44 @@
             "deprecationReason": null
           },
           {
+            "name": "motivation",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "dateEvent",
             "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "skills",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -3972,10 +4121,10 @@
         "inputFields": [
           {
             "name": "image",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "SCALAR",
-              "name": "Upload",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -4043,6 +4192,18 @@
             "deprecationReason": null
           },
           {
+            "name": "dateStartRequest",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "provide",
             "description": "",
             "type": {
@@ -4055,7 +4216,7 @@
             "deprecationReason": null
           },
           {
-            "name": "skills",
+            "name": "descriptionOther",
             "description": "",
             "type": {
               "kind": "SCALAR",
@@ -4193,6 +4354,26 @@
               "kind": "SCALAR",
               "name": "Int",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "skills",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -4236,10 +4417,10 @@
         "inputFields": [
           {
             "name": "image",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "SCALAR",
-              "name": "Upload",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -4307,6 +4488,18 @@
             "deprecationReason": null
           },
           {
+            "name": "dateStartRequest",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "provide",
             "description": "",
             "type": {
@@ -4319,7 +4512,7 @@
             "deprecationReason": null
           },
           {
-            "name": "skills",
+            "name": "descriptionOther",
             "description": "",
             "type": {
               "kind": "SCALAR",
@@ -4457,6 +4650,26 @@
               "kind": "SCALAR",
               "name": "Int",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "skills",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -5088,6 +5301,17 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "Upload",
+        "description": "Create scalar that ignores normal serialization/deserialization, since\nthat will be handled by the multipart request spec",
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "UpdatePhotoMutation",
         "description": null,
@@ -5691,6 +5915,18 @@
             "deprecationReason": null
           },
           {
+            "name": "color",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "volunteereventSet",
             "description": "",
             "type": {
@@ -5801,6 +6037,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "color",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,

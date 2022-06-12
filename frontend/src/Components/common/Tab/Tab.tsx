@@ -10,7 +10,6 @@ type Props = {
 export const Tab = ({label, path}: Props) => {
     const nav = useNavigate();
     const location = useLocation();
-    console.log(location)
     const tab = classNames('tab', {
         active: location.pathname == path
     })

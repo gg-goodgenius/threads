@@ -6,9 +6,14 @@ import icon from "./icon.svg";
 import './scss/index.scss'
 import {Button} from "antd";
 import {PrimaryButton} from "../common/PrimaryButtton";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../../context/UserState";
+import Avatar from "antd/es/avatar/avatar";
 
 export const Header = () => {
+    const {user} = useContext(UserContext)
     const nav = useNavigate();
+
     return (
         <div className='Header'>
             <div className='logo_container'>
@@ -34,7 +39,7 @@ export const Header = () => {
                 />
 
             </Tabs>
-            <PrimaryButton onClick={() => nav('/auth')}>Войти</PrimaryButton>
+            {!user?.id ? <PrimaryButton onClick={() => nav('/auth')}>Войти</PrimaryButton> : <Avatar />}
         </div>
     );
 }
