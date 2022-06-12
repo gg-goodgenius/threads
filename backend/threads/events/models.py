@@ -9,6 +9,14 @@ class Tag(models.Model):
     name = models.CharField(max_length=300, verbose_name='Тэг')
 
 
+    class Meta:
+        verbose_name = 'Хэштег'
+        verbose_name_plural = 'Хэштеги'
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+
+
 class Contact(models.Model):
     ''' Контактная информация '''
     
@@ -21,11 +29,25 @@ class Contact(models.Model):
     type = models.IntegerField(default=0, verbose_name='Тип контакта')
     value = models.CharField(max_length=255, verbose_name='Контакт')
 
+    class Meta:
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакты'
+
+    def __str__(self) -> str:
+        return f'{self.get_type_display()} - {self.value}'
+
 
 class Metro(models.Model):
     ''' Станции метро '''
 
     name = models.CharField(verbose_name='Станция метро', max_length=100)
+
+    class Meta:
+        verbose_name = 'Станция метро'
+        verbose_name_plural = 'Станции метро'
+
+    def __str__(self) -> str:
+        return f'{self.name}'
 
 
 class Event(models.Model):
@@ -53,6 +75,9 @@ class Event(models.Model):
     
     is_template = models.BooleanField(verbose_name='Это шаблон', default=False)
 
+    def __str__(self) -> str:
+        return f'{self.title}'
+
     def get_coutn_members(self):
         return self.members.all().count()
     
@@ -66,6 +91,12 @@ class VolunteerEvent(Event):
     bisness_needed = models.TextField(verbose_name='Нам необходимо от бизнесса', blank=True, null=True)
     date_event = models.DateTimeField(verbose_name='Дата мероприятия', blank=True, null=True)
 
+    class Meta:
+        verbose_name = 'Волотерство'
+        verbose_name_plural = 'Волотерства'
+
+    
+    
 
 class InternEvent(Event):
     ''' Мероприятия для стажеров '''
@@ -74,12 +105,24 @@ class InternEvent(Event):
     skills_extra = models.TextField(verbose_name='Плюсом будет', blank=True, null=True)
     paycheck = models.IntegerField(verbose_name='Запрлата', default=0)
 
+    class Meta:
+        verbose_name = 'Стажировка'
+        verbose_name_plural = 'Стажировки'
+
 
 class Schedule(models.Model):
     ''' Расписание '''
     timedate = models.DateTimeField(verbose_name='Время и дата')
     value = models.CharField(verbose_name='Действие', max_length=255)
     volunteer_event = models.ForeignKey(to=VolunteerEvent, related_name='events', on_delete=models.CASCADE, verbose_name='Волонтерство')
+
+    class Meta:
+        verbose_name = 'Пункт расписания'
+        verbose_name_plural = 'Пункты расписания'
+        ordering = ['timedate']
+
+    def __str__(self) -> str:
+        return f'{self.volunteer_event}: {self.timedate} - {self.value}'
 
 
 class Photo(models.Model):
@@ -88,8 +131,22 @@ class Photo(models.Model):
     title = models.CharField(max_length=300, verbose_name='Заголовок', blank=True, null=True)
     event = models.ForeignKey(to=VolunteerEvent, related_name='photes', on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = 'Фотография'
+        verbose_name_plural = 'Фотографии'
+
+    def __str__(self) -> str:
+        return f'{self.title if self.title else "Без имени"}'
+
 
 class Report(models.Model):
     ''' Отчеты по мероприятиям '''
     document = models.FileField(verbose_name='Документ', upload_to='docs')
     description = models.TextField(verbose_name='Описание',  blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Отчет'
+        verbose_name_plural = 'Отчеты'
+
+    def __str__(self) -> str:
+        return f'{self.document.url}'

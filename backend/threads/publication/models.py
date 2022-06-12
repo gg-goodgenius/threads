@@ -9,6 +9,12 @@ class Article(models.Model):
     text = models.TextField(verbose_name='Текст публикации')
     author = models.ForeignKey(to=User, related_name='article', on_delete=models.CASCADE, verbose_name='Автор')
     
+    class Meta:
+        verbose_name = 'Публикация'
+        verbose_name_plural = 'Публикации'
+
+    def __str__(self) -> str:
+        return f'{self.name}'
 
 class News(models.Model):
     ''' Новости '''
@@ -17,3 +23,10 @@ class News(models.Model):
     author = models.ForeignKey(to=User, related_name='news', on_delete=models.CASCADE, verbose_name='Автор')
     date = models.DateField(auto_now_add=True, verbose_name='Дата')
     tags = models.ManyToManyField(to=Tag)
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+    def __str__(self) -> str:
+        return f'{self.name}'
