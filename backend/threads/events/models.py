@@ -141,7 +141,7 @@ class VolunteerEvent(Event):
     class Meta:
         verbose_name = 'Волотерство'
         verbose_name_plural = 'Волотерства'
-        ordering = ['image']
+        ordering = ['-image']
 
 
 class InternEvent(Event):
