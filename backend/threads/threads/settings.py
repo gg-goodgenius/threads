@@ -123,3 +123,15 @@ GRAPHQL_JWT = {
     "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=7),
 }
 
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_ALL_CREDENTENALS =True
