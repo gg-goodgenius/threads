@@ -55,7 +55,7 @@ class Query(graphene.ObjectType):
         return _resolve_objects(Group, info)
     
     def resolve_getVolunteerEvents(root, info) -> QuerySet:
-        return _resolve_objects(Group, info)
+        return _resolve_objects(VolunteerEvent, info)
     
     def resolve_getInternEvents(root, info) -> QuerySet:
         return _resolve_objects(InternEvent, info)
@@ -79,8 +79,12 @@ class Query(graphene.ObjectType):
         return _resolve_objects(Report, info)
     
     @login_required
-    def resolve_getUser(root, info, id) -> object:
-        return _resolve_object_by_id(User, info, id)
+    def resolve_getUser(root, info, id=None) -> object:
+        # return _resolve_object_by_id(User, info, id)
+        if id:
+            return User.objects.get(pk=id)
+        else:
+            return info.context.user
 
     @login_required
     def resolve_getGroup(root, info, id) -> object:

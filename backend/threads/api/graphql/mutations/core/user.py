@@ -1,5 +1,6 @@
 import graphene
 from api.graphql.types import UserGraphQLType
+from graphql_jwt.shortcuts import create_refresh_token, get_token
 
 from core.models import User
 from django.contrib.auth.models import Group
@@ -15,7 +16,7 @@ class RegistrationUser(graphene.Mutation):
         description = 'Регистрация пользователя'
 
     ok = graphene.Boolean(description='Результат регистрации')
-    user = graphene.Field(UserGraphQLType, description='Зарегистрированный пользователь')
+    token = graphene.String(description='Токен')
 
     @classmethod
     def mutate(cls, root, info, email, password, type_account) -> graphene.Mutation:
@@ -37,7 +38,8 @@ class RegistrationUser(graphene.Mutation):
             new_user.groups.add(group)
             new_user.save()
             ok = True
+            token = get_token(new_user)
         except Exception as e:
             new_user.delete()
             raise
-        return RegistrationUser(ok=ok, user=new_user)
+        return RegistrationUser(ok=ok, token=token)

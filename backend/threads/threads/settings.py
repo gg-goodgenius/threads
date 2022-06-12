@@ -1,7 +1,7 @@
 from pathlib import Path
 import environ
 env = environ.Env()
-
+import datetime
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(BASE_DIR / '.env')
@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'graphene_django',
+    'corsheaders',
     'core',
     'graphql',
     'events',
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -116,3 +118,22 @@ GRAPHQL_JWT = {
 
 CSRF_TRUSTED_ORIGINS = ['https://api.threads.goodgenius.ru']
 
+# for test
+GRAPHQL_JWT = {
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(days=7),
+    "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=7),
+}
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_ALL_CREDENTENALS =True

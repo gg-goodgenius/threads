@@ -1,6 +1,8 @@
 import graphene
 import graphene_django
 import graphql_jwt
+from graphql_jwt.mutations import token_auth
+
 
 from api.graphql.mutations.core.user import *
 from api.graphql.mutations.events.volunteer_event import *
@@ -24,6 +26,7 @@ class Mutation(graphene.ObjectType):
     create_volunteer_event = CreateVolunteerEventMutation.Field()
     update_volunteer_event = UpdateVolunteerEventMutation.Field()
     delete_volunteer_event = DeleteVolunteerEventMutation.Field()
+    create_template_volunteer_event = CreateTemplateVolunteerEventMutation.Field()
 
     create_intern_event = CreateInternEventMutation.Field()
     update_intern_event = UpdateInternEventMutation.Field()

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from events.models import InternEvent, VolunteerEvent
-
+# from events.models import InternEvent, Tag, VolunteerEvent
 # Раздел описание моделей с пользователями
 
 class UserManager(BaseUserManager):
@@ -38,6 +37,10 @@ class User(AbstractUser):
     telegram = models.CharField(max_length=300, verbose_name='telegram')
     phone = models.CharField(max_length=15, verbose_name='номер телефона')
     description = models.TextField(verbose_name='Описание')
+    status = models.CharField(verbose_name='Статус', max_length=190, null=True, blank=True)
+    image = models.ImageField(verbose_name='Аватарка', null=True, blank=True)
+
+    # tags = models.ManyToManyField(to=Tag)
     # favorite_intern_events = models.ForeignKey(to=InternEvent, on_delete=models.SET_NULL, related_name='users', verbose_name='Избранные стажировки')
     # favorite_volunteer_events = models.ForeignKey(to=VolunteerEvent, on_delete=models.SET_NULL, related_name='users', verbose_name='Избранные волонтерства')
     REQUIRED_FIELDS = []
