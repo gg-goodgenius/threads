@@ -1,6 +1,8 @@
 from distutils.command.upload import upload
 from django.db import models
 from core.models import User
+# from django.apps import apps
+
 
 class Tag(models.Model):
     ''' Хештеги для поиска по мероприятиям '''
@@ -31,6 +33,8 @@ class Event(models.Model):
     class Meta:
         abstract=True
 
+    # User = apps.get_model('core', 'User')
+
     image = models.ImageField(verbose_name='Изображение', blank=True, null=True)
     title = models.CharField(max_length=300, verbose_name='Заголовок')
     tags = models.ManyToManyField(to=Tag)
@@ -56,6 +60,7 @@ class Event(models.Model):
 
 class VolunteerEvent(Event):
     ''' Мероприятия для волонтеров '''
+    # User = apps.get_model('core', 'User')
     organization = models.ForeignKey(verbose_name='Организатор', to=User, related_name='volunteer_events', on_delete=models.CASCADE)
     personal_needed = models.TextField(verbose_name='Вам необходимо иметь c собой', blank=True, null=True)
     bisness_needed = models.TextField(verbose_name='Нам необходимо от бизнесса', blank=True, null=True)
@@ -64,6 +69,7 @@ class VolunteerEvent(Event):
 
 class InternEvent(Event):
     ''' Мероприятия для стажеров '''
+    # User = apps.get_model('core', 'User')
     organization = models.ForeignKey(verbose_name='Компания', to=User, related_name='intern_events', on_delete=models.CASCADE)
     skills_extra = models.TextField(verbose_name='Плюсом будет', blank=True, null=True)
     paycheck = models.IntegerField(verbose_name='Запрлата', default=0)
