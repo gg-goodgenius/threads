@@ -79,7 +79,7 @@ class Query(graphene.ObjectType):
         return _resolve_objects(Report, info)
     
     @login_required
-    def resolve_getUser(root, info, id) -> object:
+    def resolve_getUser(root, info, id=None) -> object:
         # return _resolve_object_by_id(User, info, id)
         if id:
             return User.objects.get(pk=id)
