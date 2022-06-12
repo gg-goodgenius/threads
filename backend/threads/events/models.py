@@ -1,13 +1,23 @@
 from distutils.command.upload import upload
 from django.db import models
 from core.models import User
+from events.load_mosvolonter import get_event
+import random
 # from django.apps import apps
 
 
 class Tag(models.Model):
     ''' Хештеги для поиска по мероприятиям '''
-    name = models.CharField(max_length=300, verbose_name='Тэг')
+    name = models.CharField(max_length=300, verbose_name='Тэг',)
+    color = models.CharField(max_length=6, verbose_name='Цвет', default="FF0000")
 
+    def get_random_color(self) -> str:
+        self.color = "".join([random.choice('0123456789ABCDEF') for j in range(6)])
+        return self.color
+
+    def save(self,*args, **kwargs):
+        self.get_random_color()
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Хэштег'
@@ -71,14 +81,15 @@ class Event(models.Model):
 
     # User = apps.get_model('core', 'User')
 
-    image = models.ImageField(verbose_name='Изображение', blank=True, null=True)
+    image = models.URLField(verbose_name='Изображение', blank=True, null=True)
     title = models.CharField(max_length=300, verbose_name='Заголовок')
     tags = models.ManyToManyField(to=Tag)
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
-    date_end_request = models.DateField(verbose_name='Дата окончания приема заявок', blank=True, null=True)
+    date_end_request = models.DateField(verbose_name='Дата окончания', blank=True, null=True)
+    date_start_request = models.DateField(verbose_name='Дата начала', blank=True, null=True)
 
     provide = models.TextField(verbose_name='Обеспечение', blank=True, null=True)
-
+    description_other = models.TextField(verbose_name='Дополнительное описание', blank=True, null=True)
     
     age_limits_min = models.IntegerField(verbose_name='Минимальные ограничения возраста', default=16)
     members = models.ManyToManyField(verbose_name='Учатсники', to=User)
@@ -95,7 +106,19 @@ class Event(models.Model):
     def get_coutn_members(self):
         return self.members.all().count()
     
+class VolunteerEventManager(models.Manager):
 
+    def load_mosvolonter(self):
+        for event, tags in get_event():
+            print(event, tags)
+            u = User.objects.filter(is_superuser=True).first()
+            ve = VolunteerEvent(organization=u, **event)
+            ve.save()
+            for tag in tags:
+                (t, created) = Tag.objects.get_or_create(name=tag)
+                ve.tags.add(t)
+            ve.save()
+        
 
 class VolunteerEvent(Event):
     ''' Мероприятия для волонтеров '''
@@ -106,6 +129,8 @@ class VolunteerEvent(Event):
     motivation = models.TextField(verbose_name='Вы получите от волонтерства', blank=True, null=True)
     date_event = models.DateTimeField(verbose_name='Дата мероприятия', blank=True, null=True)
     skills = models.ManyToManyField(to=Skill, verbose_name='Необходимые навыки')
+
+    objects = VolunteerEventManager()
 
     class Meta:
         verbose_name = 'Волотерство'
