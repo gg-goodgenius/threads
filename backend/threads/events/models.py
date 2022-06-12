@@ -50,6 +50,20 @@ class Metro(models.Model):
         return f'{self.name}'
 
 
+class Skill(models.Model):
+    ''' Навыки '''
+    name = models.CharField(max_length=300, verbose_name='Навык')
+
+
+    class Meta:
+        verbose_name = 'Навык'
+        verbose_name_plural = 'Навыки'
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+
+
+
 class Event(models.Model):
     ''' Абстрактная модель мероприятия '''
     class Meta:
@@ -65,7 +79,7 @@ class Event(models.Model):
 
     provide = models.TextField(verbose_name='Обеспечение', blank=True, null=True)
 
-    skills = models.TextField(verbose_name='Необходимые навыки', blank=True, null=True)
+    
     age_limits_min = models.IntegerField(verbose_name='Минимальные ограничения возраста', default=16)
     members = models.ManyToManyField(verbose_name='Учатсники', to=User)
     
@@ -90,6 +104,7 @@ class VolunteerEvent(Event):
     personal_needed = models.TextField(verbose_name='Вам необходимо иметь c собой', blank=True, null=True)
     bisness_needed = models.TextField(verbose_name='Нам необходимо от бизнесса', blank=True, null=True)
     date_event = models.DateTimeField(verbose_name='Дата мероприятия', blank=True, null=True)
+    skills = models.ManyToManyField(to=Skill, verbose_name='Необходимые навыки')
 
     class Meta:
         verbose_name = 'Волотерство'
@@ -104,7 +119,8 @@ class InternEvent(Event):
     organization = models.ForeignKey(verbose_name='Компания', to=User, related_name='intern_events', on_delete=models.CASCADE)
     skills_extra = models.TextField(verbose_name='Плюсом будет', blank=True, null=True)
     paycheck = models.IntegerField(verbose_name='Запрлата', default=0)
-
+    skills = models.ManyToManyField(to=Skill, verbose_name='Необходимые навыки')
+    
     class Meta:
         verbose_name = 'Стажировка'
         verbose_name_plural = 'Стажировки'
