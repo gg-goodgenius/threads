@@ -1,5 +1,5 @@
-[![Django CI/CD](https://github.com/gg-goodgenius/threads/actions/workflows/backend.yml/badge.svg?branch=main)](https://github.com/gg-goodgenius/threads/actions/workflows/backend.yml)
-[![ReactJS CI/CD](https://github.com/gg-goodgenius/threads/actions/workflows/frontend.yml/badge.svg?branch=main)](https://github.com/gg-goodgenius/threads/actions/workflows/frontend.yml)
+[![Django CI/CD](https://github.com/gg-goodgenius/threads/actions/workflows/backend.yml/badge.svg)](https://github.com/gg-goodgenius/threads/actions/workflows/backend.yml)
+[![ReactJS CI/CD](https://github.com/gg-goodgenius/threads/actions/workflows/frontend.yml/badge.svg)](https://github.com/gg-goodgenius/threads/actions/workflows/frontend.yml)
 
 # Сервис "Нити"
 Дружелюбная платформа для людей, которые хотят дарить добро и помогать городу!
