@@ -7,6 +7,7 @@ from core.models import User
 from events.models import *
 
 class UserGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = User
         description = 'Пользователь'
