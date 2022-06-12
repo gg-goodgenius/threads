@@ -1,8 +1,6 @@
-from tkinter import Y
 import requests
 import json
 from bs4 import BeautifulSoup
-from datetime import datetime, date
 
 def get_event_list():
     url = 'https://mosvolonter.ru/events'
