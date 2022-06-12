@@ -14,12 +14,14 @@ class UserGraphQLType(DjangoObjectType):
 
 
 class GroupGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = Group
         description = 'Группа пользователей'
 
 
 class VolunteerEventGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = VolunteerEvent
         description = 'Волонтерство'
@@ -31,6 +33,7 @@ class VolunteerEventGraphQLType(DjangoObjectType):
 
 
 class InternEventGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = InternEvent
         description = 'Стажировка'
@@ -41,36 +44,42 @@ class InternEventGraphQLType(DjangoObjectType):
 
 
 class ContactGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = Contact
         description = 'Контакт'
 
 
 class TagGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = Tag
         description = 'Тег'
 
 
 class MetroGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = Metro
         description = 'Станция метро'
 
 
 class ScheduleGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = Schedule
         description = 'Пункт расписания'
 
 
 class PhotoGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = Photo
         description = 'Фотография'
 
 
 class ReportGraphQLType(DjangoObjectType):
+    id = graphene.Int()
     class Meta:
         model = Report
         description = 'Отчет'
