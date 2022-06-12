@@ -11,15 +11,15 @@ import {Link} from "react-router-dom";
 
 type Props = {
     id: number,
-    image?: string,
+    image?: string | null,
     title: string,
     tags: {
         color: string,
-        title: string
+        name: string
     }[],
-    dates: string[],
+    dates?: string[],
     photos?: string[],
-    counter: string
+    memberCount?: number | null
 
 }
 
@@ -30,20 +30,20 @@ export const CardEvent = (props: Props) => {
                 <div className='card-event'>
                     <div className='box-tags'>
                         <div className='tags'>
-                            {props.tags.map((tag) => <Tag color={tag.color}>#{tag.title}</Tag>)}
+                            {props.tags.map((tag) => <Tag color={'#' + tag.color}>#{tag.name}</Tag>)}
                         </div>
                         <Favorite/>
                     </div>
                     {props.image && <img className='preview' src={props.image}/>}
-                    <h1 className='title'>Региональный волонтёрский центр «Зоозащиты»</h1>
+                    <h1 className='title'>{props.title}</h1>
                     <div className='dates'>
-                        {props.dates.map(date => <TagDate>{date}</TagDate>)}
+                        {props.dates?.map(date => <TagDate>{date}</TagDate>)}
                     </div>
                     <div className='participates'>
-                        {props.photos ? <UsersStack photos={props.photos}/> : <div/>}
+                        {/*{props.photos ? <UsersStack photos={props.photos}/> : <div/>}*/}
                         <div className='box-counter'>
                             <Check/>
-                            <span className='counter'>{props.counter}</span>
+                            <span className='counter'>{props.memberCount}</span>
                         </div>
                     </div>
                 </div>

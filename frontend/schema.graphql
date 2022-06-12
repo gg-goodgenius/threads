@@ -7,7 +7,7 @@ schema {
 
 "Контакт"
 type ContactGraphQLType {
-    id: ID!
+    id: Int
     interneventSet: [InternEventGraphQLType!]!
     type: Int!
     value: String!
@@ -104,7 +104,7 @@ type DeleteVolunteerEventMutation {
 
 "Группа пользователей"
 type GroupGraphQLType {
-    id: ID!
+    id: Int
     name: String!
     "Группы, к которым принадлежит данный пользователь. Пользователь получит все права, указанные в каждой из его/её групп."
     userSet: [UserGraphQLType!]!
@@ -119,7 +119,7 @@ type InternEventGraphQLType {
     dateStartRequest: Date
     description: String
     descriptionOther: String
-    id: ID!
+    id: Int
     image: String
     isTemplate: Boolean!
     "Количество учатсников"
@@ -136,7 +136,7 @@ type InternEventGraphQLType {
 
 "Станция метро"
 type MetroGraphQLType {
-    id: ID!
+    id: Int
     interneventSet: [InternEventGraphQLType!]!
     name: String!
     volunteereventSet: [VolunteerEventGraphQLType!]!
@@ -192,7 +192,7 @@ type ObtainJSONWebToken {
 "Фотография"
 type PhotoGraphQLType {
     event: VolunteerEventGraphQLType!
-    id: ID!
+    id: Int
     image: String!
     title: String
 }
@@ -259,12 +259,12 @@ type RegistrationUser {
 type ReportGraphQLType {
     description: String
     document: String!
-    id: ID!
+    id: Int
 }
 
 "Пункт расписания"
 type ScheduleGraphQLType {
-    id: ID!
+    id: Int
     timedate: DateTime!
     value: String!
     volunteerEvent: VolunteerEventGraphQLType!
@@ -273,7 +273,7 @@ type ScheduleGraphQLType {
 "Тег"
 type TagGraphQLType {
     color: String!
-    id: ID!
+    id: Int
     interneventSet: [InternEventGraphQLType!]!
     name: String!
     volunteereventSet: [VolunteerEventGraphQLType!]!
@@ -357,7 +357,7 @@ type VolunteerEventGraphQLType {
     description: String
     descriptionOther: String
     events: [ScheduleGraphQLType!]!
-    id: ID!
+    id: Int
     image: String
     isTemplate: Boolean!
     "Количество учатсников"

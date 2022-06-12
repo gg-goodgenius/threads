@@ -5,10 +5,16 @@ import {useState} from "react";
 import {PrimaryButton} from "../../common/PrimaryButtton";
 import {Card} from "../../common/Card";
 import {Avatar, Radio} from "antd";
-import {Tag} from "../../common/Tag";
-import {CardTrainee} from "../CardTrainee";
 
-export const MainComponent = () => {
+import {CardTrainee} from "../CardTrainee";
+import { GetEvents_events } from "../hooks/__generated__/GetEvents";
+import { FilterContainer } from "../Filter.container";
+
+type Props = {
+    events: (GetEvents_events | null)[],
+}
+
+export const MainComponent = (props: Props) => {
     const [isTrainee, setIsTrainee] = useState(false);
 
     return (
@@ -23,106 +29,20 @@ export const MainComponent = () => {
                                        bgColor={!isTrainee ? '#fff' : ''}>Стажировки</PrimaryButton>
                     </div>
                 </div>
-                {!isTrainee ? <Plock>
-                        <CardEvent
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            image={'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
+                {!isTrainee ?
+                    <Plock>
+                        {props.events.map((event) => {
+                            if(event?.id) {
+                                return <CardEvent
+                                            id={event.id}
+                                            title={event.title}
+                                            image={event.image}
+                                            tags={event.tags}
+                                            memberCount={event.memberCount}
+                                            // photos={event.members.map(m => m.image)}
+                                />
                             }
-                        />
-                        <CardEvent
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                        />
-                        <CardEvent
-                            id={3}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                        />
-                        <CardEvent
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            image='https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                        />
-                        <CardEvent
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                        />
-                        <CardEvent
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            image={'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                        />
+                        })}
                     </Plock>
                     :
                     <Plock>
@@ -247,28 +167,17 @@ export const MainComponent = () => {
                 }
             </div>
             <div className='filter'>
-                {/*<h1 className='title'>Поиск по хэштегам 😎</h1>*/}
-                {/*<div className='tags'>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*    <Tag color='red'>#IT</Tag>*/}
-                {/*</div>*/}
-
-                <h1 className='title'>Фильтры</h1>
-                <div>
-                    <Radio.Group name='trainee_type'>
-                        <Radio>Оплачиваемые стажировки</Radio>
-                        <Radio>Стажировки без оплаты</Radio>
-                    </Radio.Group>
-                </div>
+                <FilterContainer isTrainee={isTrainee} />
             </div>
+            {/*<div className='filter'>*/}
+            {/*    <h1 className='title'>Фильтры</h1>*/}
+            {/*    <div>*/}
+            {/*        <Radio.Group name='trainee_type'>*/}
+            {/*            <Radio>Оплачиваемые стажировки</Radio>*/}
+            {/*            <Radio>Стажировки без оплаты</Radio>*/}
+            {/*        </Radio.Group>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
     );
 };
