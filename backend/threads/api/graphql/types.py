@@ -17,8 +17,6 @@ class GroupGraphQLType(DjangoObjectType):
         model = Group
         description = 'Группа пользователей'
 
-    
-
 
 class VolunteerEventGraphQLType(DjangoObjectType):
     class Meta:

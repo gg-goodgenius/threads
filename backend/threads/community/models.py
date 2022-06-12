@@ -27,7 +27,7 @@ class Command(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(verbose_name='Аватарка', upload_to='command')
     description = models.TextField()
-    tags = models.ForeignKey(to=Tag, verbose_name='Хештег', on_delete=models.CASCADE, related_name='commands')
+    tags = models.ManyToManyField(to=Tag, verbose_name='Хештег', related_name='commands')
     members = models.ManyToManyField(to=User)
 
     def __str__(self) -> str:
