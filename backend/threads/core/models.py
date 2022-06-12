@@ -37,6 +37,9 @@ class User(AbstractUser):
     telegram = models.CharField(max_length=300, verbose_name='telegram')
     phone = models.CharField(max_length=15, verbose_name='номер телефона')
     description = models.TextField(verbose_name='Описание')
+    status = models.TextField(verbose_name='Статус', null=True, blank=True)
+    image = models.ImageField(verbose_name='Аватарка', null=True, blank=True)
+
     # tags = models.ManyToManyField(to=Tag)
     # favorite_intern_events = models.ForeignKey(to=InternEvent, on_delete=models.SET_NULL, related_name='users', verbose_name='Избранные стажировки')
     # favorite_volunteer_events = models.ForeignKey(to=VolunteerEvent, on_delete=models.SET_NULL, related_name='users', verbose_name='Избранные волонтерства')
