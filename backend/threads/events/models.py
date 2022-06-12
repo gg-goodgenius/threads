@@ -34,7 +34,7 @@ class Contact(models.Model):
         verbose_name_plural = 'Контакты'
 
     def __str__(self) -> str:
-        return f'{self.get_type_display()} - {self.value}'
+        return f'{self.value}'
 
 
 class Metro(models.Model):
@@ -120,7 +120,7 @@ class InternEvent(Event):
     skills_extra = models.TextField(verbose_name='Плюсом будет', blank=True, null=True)
     paycheck = models.IntegerField(verbose_name='Запрлата', default=0)
     skills = models.ManyToManyField(to=Skill, verbose_name='Необходимые навыки')
-    
+
     class Meta:
         verbose_name = 'Стажировка'
         verbose_name_plural = 'Стажировки'
