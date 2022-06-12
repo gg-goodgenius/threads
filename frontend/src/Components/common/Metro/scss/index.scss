@@ -1,0 +1,12 @@
+.box-metro {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  .label {
+    font-size: 12px;
+    font-weight: 400;
+    color: #99999C;
+  }
+}
