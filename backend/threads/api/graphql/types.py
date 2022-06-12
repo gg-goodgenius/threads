@@ -22,6 +22,8 @@ class GroupGraphQLType(DjangoObjectType):
 
 class VolunteerEventGraphQLType(DjangoObjectType):
     id = graphene.Int()
+    date_event_str = graphene.String()
+
     class Meta:
         model = VolunteerEvent
         description = 'Волонтерство'
@@ -29,6 +31,9 @@ class VolunteerEventGraphQLType(DjangoObjectType):
     member_count = graphene.Int(description='Количество учатсников')
     def resolve_member_count(self, info):
         return self.get_coutn_members()
+
+    def resolve_date_event_str(self, info):
+        return self.date_event_str()
         
 
 

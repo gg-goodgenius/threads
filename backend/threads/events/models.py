@@ -146,6 +146,9 @@ class VolunteerEvent(Event):
 
     objects = VolunteerEventManager()
 
+    def date_event_str(self):
+        return self.date_event.strftime("%d.%m.%Y")
+
     class Meta:
         verbose_name = 'Волотерство'
         verbose_name_plural = 'Волотерства'
