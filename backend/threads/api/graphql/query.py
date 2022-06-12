@@ -80,7 +80,11 @@ class Query(graphene.ObjectType):
     
     @login_required
     def resolve_getUser(root, info, id) -> object:
-        return _resolve_object_by_id(User, info, id)
+        # return _resolve_object_by_id(User, info, id)
+        if id:
+            return User.objects.get(pk=id)
+        else:
+            return info.context.user
 
     @login_required
     def resolve_getGroup(root, info, id) -> object:
