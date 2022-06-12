@@ -14,6 +14,13 @@ type Props = {
 }
 
 export const RegComponent = ({ setIsLogin }: Props) => {
+
+    const [form] = Form.useForm();
+
+    const handleClickReg = () => {
+        console.log(form.getFieldsValue());
+    }
+
     return (
         <div className='page-auth'>
             <Card disable stretched>
@@ -24,20 +31,22 @@ export const RegComponent = ({ setIsLogin }: Props) => {
                     <div>
                         <Form
                             layout='vertical'
+                            form={form}
                         >
                             <Form.Item
+                                name='email'
                             >
-                                <Input type='text'/>
+                                <Input placeholder='Почта' type='text'/>
                             </Form.Item>
                             <Form.Item
+                                name='password'
                             >
-                                <Input type='password'/>
+                                <Input placeholder='Пароль' type='password'/>
                             </Form.Item>
                             <Form.Item
+                                name='typeAccount'
+                                initialValue={0}
                             >
-                                <Input type='password'/>
-                            </Form.Item>
-                            <Form.Item>
                                 <Radio.Group>
                                     <Radio value={0}>Волонтер</Radio>
                                     <Radio value={1}>НКО</Radio>
@@ -46,12 +55,12 @@ export const RegComponent = ({ setIsLogin }: Props) => {
 
                             </Form.Item>
                             <Form.Item>
-                                <Checkbox>
+                                <Checkbox defaultChecked>
                                     Согласиться с Условиями использования и Политикой конфеденциальности
                                 </Checkbox>
                             </Form.Item>
                             <Form.Item>
-                                <PrimaryButton mode='s' type='full'>Зарегистрироваться</PrimaryButton>
+                                <PrimaryButton mode='s' type='full' onClick={handleClickReg}>Зарегистрироваться</PrimaryButton>
                             </Form.Item>
                         </Form>
                     </div>

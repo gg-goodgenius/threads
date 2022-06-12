@@ -7,10 +7,17 @@ import icon_auth from './icon_auth.svg';
 import {PrimaryButton} from "../../common/PrimaryButtton";
 
 type Props = {
-    setIsLogin: (e: boolean) => void
+    setIsLogin: (e: boolean) => void,
+    handleLogin: (e: any) => void
 }
 
-export const AuthComponent = ({ setIsLogin }: Props) => {
+export const AuthComponent = ({ setIsLogin, handleLogin }: Props) => {
+    const [form] = Form.useForm();
+
+    const handleClickLogin = () => {
+        handleLogin(form.getFieldsValue());
+    }
+
     return (
         <div className='page-auth'>
             <Card disable stretched>
@@ -19,18 +26,21 @@ export const AuthComponent = ({ setIsLogin }: Props) => {
                         <img src={icon_auth}/>
                         <Form
                             layout='vertical'
+                            form={form}
                         >
                             <Form.Item
+                                name='email'
                             >
                                 <Input type='text' placeholder='Логин' />
                             </Form.Item>
 
                             <Form.Item
+                                name='password'
                             >
                                 <Input type='password' placeholder='Пароль' />
                             </Form.Item>
                             <Form.Item>
-                                <PrimaryButton type='full' mode='s'>Войти</PrimaryButton>
+                                <PrimaryButton type='full' mode='s' onClick={handleClickLogin}>Войти</PrimaryButton>
                             </Form.Item>
                         </Form>
                     </div>

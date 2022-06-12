@@ -1,0 +1,557 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+"Контакт"
+type ContactGraphQLType {
+    id: ID!
+    interneventSet: [InternEventGraphQLType!]!
+    type: Int!
+    value: String!
+    volunteereventSet: [VolunteerEventGraphQLType!]!
+}
+
+type CreateContactMutation {
+    contact: ContactGraphQLType
+}
+
+type CreateInternEventMutation {
+    internEvent: InternEventGraphQLType
+}
+
+type CreateMetroMutation {
+    metro: MetroGraphQLType
+}
+
+type CreatePhotoMutation {
+    photo: PhotoGraphQLType
+}
+
+type CreateReportMutation {
+    report: ReportGraphQLType
+}
+
+type CreateScheduleMutation {
+    schedule: ScheduleGraphQLType
+}
+
+type CreateTagMutation {
+    tag: TagGraphQLType
+}
+
+type CreateVolunteerEventMutation {
+    volunteerEvent: VolunteerEventGraphQLType
+}
+
+type DeleteContactMutation {
+    deletedId: ID
+    deletedInputId: ID
+    deletedRawId: ID
+    found: Boolean
+}
+
+type DeleteInternEventMutation {
+    deletedId: ID
+    deletedInputId: ID
+    deletedRawId: ID
+    found: Boolean
+}
+
+type DeleteMetroMutation {
+    deletedId: ID
+    deletedInputId: ID
+    deletedRawId: ID
+    found: Boolean
+}
+
+type DeletePhotoMutation {
+    deletedId: ID
+    deletedInputId: ID
+    deletedRawId: ID
+    found: Boolean
+}
+
+type DeleteReportMutation {
+    deletedId: ID
+    deletedInputId: ID
+    deletedRawId: ID
+    found: Boolean
+}
+
+type DeleteScheduleMutation {
+    deletedId: ID
+    deletedInputId: ID
+    deletedRawId: ID
+    found: Boolean
+}
+
+type DeleteTagMutation {
+    deletedId: ID
+    deletedInputId: ID
+    deletedRawId: ID
+    found: Boolean
+}
+
+type DeleteVolunteerEventMutation {
+    deletedId: ID
+    deletedInputId: ID
+    deletedRawId: ID
+    found: Boolean
+}
+
+"Группа пользователей"
+type GroupGraphQLType {
+    id: ID!
+    name: String!
+    "Группы, к которым принадлежит данный пользователь. Пользователь получит все права, указанные в каждой из его/её групп."
+    userSet: [UserGraphQLType!]!
+}
+
+"Стажировка"
+type InternEventGraphQLType {
+    address: String!
+    ageLimitsMin: Int!
+    contacts: [ContactGraphQLType!]!
+    dateEndRequest: Date
+    description: String
+    id: ID!
+    image: String
+    isTemplate: Boolean!
+    "Количество учатсников"
+    memberCount: Int
+    members: [UserGraphQLType!]!
+    metro: MetroGraphQLType
+    organization: UserGraphQLType!
+    paycheck: Int!
+    provide: String
+    skills: String
+    skillsExtra: String
+    tags: [TagGraphQLType!]!
+    title: String!
+}
+
+"Станция метро"
+type MetroGraphQLType {
+    id: ID!
+    interneventSet: [InternEventGraphQLType!]!
+    name: String!
+    volunteereventSet: [VolunteerEventGraphQLType!]!
+}
+
+type Mutation {
+    createContact(input: CreateContactInput!): CreateContactMutation
+    createInternEvent(input: CreateInternEventInput!): CreateInternEventMutation
+    createMetro(input: CreateMetroInput!): CreateMetroMutation
+    createPhoto(input: CreatePhotoInput!): CreatePhotoMutation
+    createReport(input: CreateReportInput!): CreateReportMutation
+    createShedule(input: CreateScheduleInput!): CreateScheduleMutation
+    createTagEvent(input: CreateTagInput!): CreateTagMutation
+    createVolunteerEvent(input: CreateVolunteerEventInput!): CreateVolunteerEventMutation
+    deleteContact(id: ID!): DeleteContactMutation
+    deleteInternEvent(id: ID!): DeleteInternEventMutation
+    deleteMetro(id: ID!): DeleteMetroMutation
+    deletePhoto(id: ID!): DeletePhotoMutation
+    deleteReport(id: ID!): DeleteReportMutation
+    deleteShedule(id: ID!): DeleteScheduleMutation
+    deleteTagEvent(id: ID!): DeleteTagMutation
+    deleteVolunteerEvent(id: ID!): DeleteVolunteerEventMutation
+    "Obtain JSON Web Token mutation"
+    login(email: String!, password: String!): ObtainJSONWebToken
+    refreshToken(token: String): Refresh
+    "Регистрация пользователя"
+    registrationUser(
+        "Электронная почта пользователя"
+        email: String!,
+        "Пароль пользователя"
+        password: String!,
+        "Тип пользователя (0 - волонтер, 1 - НКО, 2 - представитель бизнеса)"
+        typeAccount: Int!
+    ): RegistrationUser
+    updateContact(id: ID!, input: UpdateContactInput!): UpdateContactMutation
+    updateInternEvent(id: ID!, input: UpdateInternEventInput!): UpdateInternEventMutation
+    updateMetro(id: ID!, input: UpdateMetroInput!): UpdateMetroMutation
+    updatePhoto(id: ID!, input: UpdatePhotoInput!): UpdatePhotoMutation
+    updateReport(id: ID!, input: UpdateReportInput!): UpdateReportMutation
+    updateShedule(id: ID!, input: UpdateScheduleInput!): UpdateScheduleMutation
+    updateTagEvent(id: ID!, input: UpdateTagInput!): UpdateTagMutation
+    updateVolunteerEvent(id: ID!, input: UpdateVolunteerEventInput!): UpdateVolunteerEventMutation
+    verifyToken(token: String): Verify
+}
+
+"Obtain JSON Web Token mutation"
+type ObtainJSONWebToken {
+    payload: GenericScalar!
+    refreshExpiresIn: Int!
+    token: String!
+}
+
+"Фотография"
+type PhotoGraphQLType {
+    event: VolunteerEventGraphQLType!
+    id: ID!
+    image: String!
+    title: String
+}
+
+"Запросы к пользователям и группам"
+type Query {
+    "Контакт"
+    getContact(id: Int): ContactGraphQLType
+    "Список контактов"
+    getContacts: [ContactGraphQLType]
+    "Группа пользователей"
+    getGroup(id: Int): GroupGraphQLType
+    "Список групп пользователей"
+    getGroups: [GroupGraphQLType]
+    "Стажировка"
+    getInternEvent(id: Int): InternEventGraphQLType
+    "Список стажировок"
+    getInternEvents: [InternEventGraphQLType]
+    "Список станций метро"
+    getMetres: [MetroGraphQLType]
+    "Метро"
+    getMetro(id: Int): MetroGraphQLType
+    "Список фотографий"
+    getPhotes: [PhotoGraphQLType]
+    "Фотография"
+    getPhoto(id: Int): PhotoGraphQLType
+    "Отчет"
+    getReport(id: Int): ReportGraphQLType
+    "Список отчетов"
+    getReports: [ReportGraphQLType]
+    "Расписание"
+    getSchedule(id: Int): ScheduleGraphQLType
+    "Список пунктов расписания"
+    getSchedules: [ScheduleGraphQLType]
+    "Тег"
+    getTag(id: Int): TagGraphQLType
+    "Список тегов"
+    getTags: [TagGraphQLType]
+    "Пользователь"
+    getUser(id: Int): UserGraphQLType
+    "Список пользователей"
+    getUsers: [UserGraphQLType]
+    "Волонтерство"
+    getVolunteerEvent(id: Int): VolunteerEventGraphQLType
+    "Список волонтерств"
+    getVolunteerEvents: [VolunteerEventGraphQLType]
+}
+
+type Refresh {
+    payload: GenericScalar!
+    refreshExpiresIn: Int!
+    token: String!
+}
+
+"Регистрация пользователя"
+type RegistrationUser {
+    "Результат регистрации"
+    ok: Boolean
+    "Зарегистрированный пользователь"
+    user: UserGraphQLType
+}
+
+"Отчет"
+type ReportGraphQLType {
+    description: String
+    document: String!
+    id: ID!
+}
+
+"Пункт расписания"
+type ScheduleGraphQLType {
+    id: ID!
+    timedate: DateTime!
+    value: String!
+    volunteerEvent: VolunteerEventGraphQLType!
+}
+
+"Тег"
+type TagGraphQLType {
+    id: ID!
+    interneventSet: [InternEventGraphQLType!]!
+    name: String!
+    volunteereventSet: [VolunteerEventGraphQLType!]!
+}
+
+type UpdateContactMutation {
+    contact: ContactGraphQLType
+}
+
+type UpdateInternEventMutation {
+    internEvent: InternEventGraphQLType
+}
+
+type UpdateMetroMutation {
+    metro: MetroGraphQLType
+}
+
+type UpdatePhotoMutation {
+    photo: PhotoGraphQLType
+}
+
+type UpdateReportMutation {
+    report: ReportGraphQLType
+}
+
+type UpdateScheduleMutation {
+    schedule: ScheduleGraphQLType
+}
+
+type UpdateTagMutation {
+    tag: TagGraphQLType
+}
+
+type UpdateVolunteerEventMutation {
+    volunteerEvent: VolunteerEventGraphQLType
+}
+
+"Пользователь"
+type UserGraphQLType {
+    dateJoined: DateTime!
+    description: String!
+    email: String!
+    firstName: String!
+    "Группы, к которым принадлежит данный пользователь. Пользователь получит все права, указанные в каждой из его/её групп."
+    groups: [GroupGraphQLType!]!
+    id: ID!
+    internEvents: [InternEventGraphQLType!]!
+    interneventSet: [InternEventGraphQLType!]!
+    "Отметьте, если пользователь должен считаться активным. Уберите эту отметку вместо удаления учётной записи."
+    isActive: Boolean!
+    "Отметьте, если пользователь может входить в административную часть сайта."
+    isStaff: Boolean!
+    "Указывает, что пользователь имеет все права без явного их назначения."
+    isSuperuser: Boolean!
+    lastLogin: DateTime
+    lastName: String!
+    middleName: String
+    password: String!
+    phone: String!
+    telegram: String!
+    typeAccount: Int!
+    volunteerEvents: [VolunteerEventGraphQLType!]!
+    volunteereventSet: [VolunteerEventGraphQLType!]!
+}
+
+type Verify {
+    payload: GenericScalar!
+}
+
+"Волонтерство"
+type VolunteerEventGraphQLType {
+    address: String!
+    ageLimitsMin: Int!
+    bisnessNeeded: String
+    contacts: [ContactGraphQLType!]!
+    dateEndRequest: Date
+    dateEvent: DateTime
+    description: String
+    events: [ScheduleGraphQLType!]!
+    id: ID!
+    image: String
+    isTemplate: Boolean!
+    "Количество учатсников"
+    memberCount: Int
+    members: [UserGraphQLType!]!
+    metro: MetroGraphQLType
+    organization: UserGraphQLType!
+    personalNeeded: String
+    photes: [PhotoGraphQLType!]!
+    provide: String
+    skills: String
+    tags: [TagGraphQLType!]!
+    title: String!
+}
+
+"""
+
+The `Date` scalar type represents a Date
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar Date
+
+"""
+
+The `DateTime` scalar type represents a DateTime
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar DateTime
+
+"""
+
+The `GenericScalar` scalar type represents a generic
+GraphQL scalar value that could be:
+String, Boolean, Int, Float, List or Object.
+"""
+scalar GenericScalar
+
+"""
+
+Create scalar that ignores normal serialization/deserialization, since
+that will be handled by the multipart request spec
+"""
+scalar Upload
+
+input CreateContactInput {
+    interneventSet: [ID]
+    type: Int
+    value: String!
+    volunteereventSet: [ID]
+}
+
+input CreateInternEventInput {
+    address: String!
+    ageLimitsMin: Int
+    contacts: [ID]!
+    dateEndRequest: Date
+    description: String
+    image: Upload
+    isTemplate: Boolean
+    members: [ID]!
+    metro: ID
+    organization: ID!
+    paycheck: Int
+    provide: String
+    skills: String
+    skillsExtra: String
+    tags: [ID]!
+    title: String!
+}
+
+input CreateMetroInput {
+    interneventSet: [ID]
+    name: String!
+    volunteereventSet: [ID]
+}
+
+input CreatePhotoInput {
+    event: ID!
+    image: Upload!
+    title: String
+}
+
+input CreateReportInput {
+    description: String
+    document: Upload!
+}
+
+input CreateScheduleInput {
+    timedate: DateTime!
+    value: String!
+    volunteerEvent: ID!
+}
+
+input CreateTagInput {
+    commands: [ID]
+    interneventSet: [ID]
+    name: String!
+    newsSet: [ID]
+    volunteereventSet: [ID]
+}
+
+input CreateVolunteerEventInput {
+    address: String!
+    ageLimitsMin: Int
+    bisnessNeeded: String
+    contacts: [ID]!
+    dateEndRequest: Date
+    dateEvent: DateTime
+    description: String
+    events: [ID]
+    image: Upload
+    isTemplate: Boolean
+    members: [ID]!
+    metro: ID
+    organization: ID!
+    personalNeeded: String
+    photes: [ID]
+    provide: String
+    skills: String
+    tags: [ID]!
+    title: String!
+}
+
+input UpdateContactInput {
+    interneventSet: [ID]
+    type: Int
+    value: String!
+    volunteereventSet: [ID]
+}
+
+input UpdateInternEventInput {
+    address: String!
+    ageLimitsMin: Int
+    contacts: [ID]!
+    dateEndRequest: Date
+    description: String
+    image: Upload
+    isTemplate: Boolean
+    members: [ID]!
+    metro: ID
+    organization: ID!
+    paycheck: Int
+    provide: String
+    skills: String
+    skillsExtra: String
+    tags: [ID]!
+    title: String!
+}
+
+input UpdateMetroInput {
+    interneventSet: [ID]
+    name: String!
+    volunteereventSet: [ID]
+}
+
+input UpdatePhotoInput {
+    event: ID!
+    image: Upload!
+    title: String
+}
+
+input UpdateReportInput {
+    description: String
+    document: Upload!
+}
+
+input UpdateScheduleInput {
+    timedate: DateTime!
+    value: String!
+    volunteerEvent: ID!
+}
+
+input UpdateTagInput {
+    commands: [ID]
+    interneventSet: [ID]
+    name: String!
+    newsSet: [ID]
+    volunteereventSet: [ID]
+}
+
+input UpdateVolunteerEventInput {
+    address: String!
+    ageLimitsMin: Int
+    bisnessNeeded: String
+    contacts: [ID]!
+    dateEndRequest: Date
+    dateEvent: DateTime
+    description: String
+    events: [ID]
+    image: Upload
+    isTemplate: Boolean
+    members: [ID]!
+    metro: ID
+    organization: ID!
+    personalNeeded: String
+    photes: [ID]
+    provide: String
+    skills: String
+    tags: [ID]!
+    title: String!
+}
