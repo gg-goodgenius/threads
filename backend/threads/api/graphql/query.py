@@ -8,8 +8,9 @@ from api.graphql.types import *
 from core.models import User
 
 # Общие функции для получения списка и объекта определенного класса
-def _resolve_objects(cls, info) -> QuerySet:
-    return cls.objects.all()
+def _resolve_objects(cls, info, offset, limit) -> QuerySet:
+    limit = limit + 1 if offset != 0 else limit
+    return cls.objects.all()[offset:limit]
 
 def _resolve_object_by_id(cls, info, id) -> object | None:
     if id:
@@ -21,16 +22,16 @@ def _resolve_object_by_id(cls, info, id) -> object | None:
 class Query(graphene.ObjectType):
     ''' Запросы '''
     # List
-    getUsers = graphene.List(UserGraphQLType, description='Список пользователей')
-    getGroups = graphene.List(GroupGraphQLType, description='Список групп пользователей')
-    getVolunteerEvents = graphene.List(VolunteerEventGraphQLType, description='Список волонтерств')
-    getInternEvents = graphene.List(InternEventGraphQLType, description='Список стажировок')
-    getTags = graphene.List(TagGraphQLType, description='Список тегов')
-    getContacts = graphene.List(ContactGraphQLType, description='Список контактов')
-    getMetres = graphene.List(MetroGraphQLType, description='Список станций метро')
-    getSchedules = graphene.List(ScheduleGraphQLType, description='Список пунктов расписания')
-    getPhotes = graphene.List(PhotoGraphQLType, description='Список фотографий')
-    getReports = graphene.List(ReportGraphQLType, description='Список отчетов')
+    getUsers = graphene.List(UserGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список пользователей')
+    getGroups = graphene.List(GroupGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список групп пользователей')
+    getVolunteerEvents = graphene.List(VolunteerEventGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список волонтерств')
+    getInternEvents = graphene.List(InternEventGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список стажировок')
+    getTags = graphene.List(TagGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список тегов')
+    getContacts = graphene.List(ContactGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список контактов')
+    getMetres = graphene.List(MetroGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список станций метро')
+    getSchedules = graphene.List(ScheduleGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список пунктов расписания')
+    getPhotes = graphene.List(PhotoGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список фотографий')
+    getReports = graphene.List(ReportGraphQLType, offset=graphene.Int(), limit=graphene.Int(), description='Список отчетов')
 
 
     # instanse
@@ -47,36 +48,36 @@ class Query(graphene.ObjectType):
 
     # определяем resolvers
     @login_required
-    def resolve_getUsers(root, info) -> QuerySet:
-        return _resolve_objects(User, info)
+    def resolve_getUsers(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(User, info, offset, limit)
 
     @login_required
-    def resolve_getGroups(root, info) -> QuerySet:
-        return _resolve_objects(Group, info)
+    def resolve_getGroups(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(Group, info, offset, limit)
     
-    def resolve_getVolunteerEvents(root, info) -> QuerySet:
-        return _resolve_objects(VolunteerEvent, info)
+    def resolve_getVolunteerEvents(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(VolunteerEvent, info, offset, limit)
     
-    def resolve_getInternEvents(root, info) -> QuerySet:
-        return _resolve_objects(InternEvent, info)
+    def resolve_getInternEvents(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(InternEvent, info, offset, limit)
     
-    def resolve_getTags(root, info) -> QuerySet:
-        return _resolve_objects(Tag, info)
+    def resolve_getTags(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(Tag, info, offset, limit)
     
-    def resolve_getContacts(root, info) -> QuerySet:
-        return _resolve_objects(Contact, info)
+    def resolve_getContacts(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(Contact, info, offset, limit)
     
-    def resolve_getMetres(root, info) -> QuerySet:
-        return _resolve_objects(Metro, info)
+    def resolve_getMetres(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(Metro, info, offset, limit)
     
-    def resolve_getSchedules(root, info) -> QuerySet:
-        return _resolve_objects(Schedule, info)
+    def resolve_getSchedules(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(Schedule, info, offset, limit)
     
-    def resolve_getPhotes(root, info) -> QuerySet:
-        return _resolve_objects(Photo, info)
+    def resolve_getPhotes(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(Photo, info, offset, limit)
     
-    def resolve_getReports(root, info) -> QuerySet:
-        return _resolve_objects(Report, info)
+    def resolve_getReports(root, info, offset=0, limit=30) -> QuerySet:
+        return _resolve_objects(Report, info, offset, limit)
     
     @login_required
     def resolve_getUser(root, info, id=None) -> object:
