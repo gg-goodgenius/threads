@@ -106,11 +106,17 @@ class Event(models.Model):
     def get_coutn_members(self):
         return self.members.all().count()
     
+    def create_template(self):
+        self.id = None 
+        self.is_template = True
+        self.title = f"Шаблон из {self.title}"
+        self.save()
+
+    
 class VolunteerEventManager(models.Manager):
 
     def load_mosvolonter(self):
         for event, tags in get_event():
-            print(event, tags)
             u = User.objects.filter(is_superuser=True).first()
             ve = VolunteerEvent(organization=u, **event)
             ve.save()
@@ -135,6 +141,7 @@ class VolunteerEvent(Event):
     class Meta:
         verbose_name = 'Волотерство'
         verbose_name_plural = 'Волотерства'
+        ordering = ['image']
 
 
 class InternEvent(Event):

@@ -28,7 +28,7 @@ def get_event():
             for dayevent in events[month]:
                 for event in events[month][dayevent]:
                     d_event = {
-                        "image": event.get('image', None),
+                        "image": 'https://mosvolonter.ru'+event.get('image', None),
                         "title": event.get('title', 'Нет записи'),
                         "description_other": get_detail(event.get('url')),
                         "date_end_request": event.get('dateEnd'),
