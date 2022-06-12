@@ -37,7 +37,7 @@ class User(AbstractUser):
     telegram = models.CharField(max_length=300, verbose_name='telegram')
     phone = models.CharField(max_length=15, verbose_name='номер телефона')
     description = models.TextField(verbose_name='Описание')
-    status = models.TextField(verbose_name='Статус', null=True, blank=True)
+    status = models.CharField(verbose_name='Статус', max_length=190, null=True, blank=True)
     image = models.ImageField(verbose_name='Аватарка', null=True, blank=True)
 
     # tags = models.ManyToManyField(to=Tag)
