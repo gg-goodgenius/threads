@@ -111,6 +111,7 @@ class Event(models.Model):
         self.is_template = True
         self.title = f"Шаблон из {self.title}"
         self.save()
+        return self
 
     
 class VolunteerEventManager(models.Manager):
