@@ -116,6 +116,7 @@ GRAPHQL_JWT = {
 
 CSRF_TRUSTED_ORIGINS = ['https://api.threads.goodgenius.ru']
 
+# for test
 GRAPHQL_JWT = {
     "JWT_VERIFY_EXPIRATION": True,
     "JWT_EXPIRATION_DELTA": datetime.timedelta(days=7),
