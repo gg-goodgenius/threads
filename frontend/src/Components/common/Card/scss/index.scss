@@ -15,4 +15,9 @@
     opacity: 1.0;
     background-color: $color-shape;
   }
+
+  &.stretched {
+    display: block;
+  }
+
 }

@@ -3,13 +3,16 @@ import './scss/index.scss';
 import {CardEvent} from "../CardEvent";
 import {useState} from "react";
 import {PrimaryButton} from "../../common/PrimaryButtton";
+import {Card} from "../../common/Card";
+import {Avatar} from "antd";
+import {Tag} from "../../common/Tag";
 
 export const MainComponent = () => {
     const [isTrainee, setIsTrainee] = useState(false);
 
     return(
         <div className='page-main'>
-            <div className='left'>
+            <div className='cards'>
                 <div className='top'>
                     <h1 className='supertitle'>{!isTrainee ? '🔥 Все волонтерства' : '⚡ Все стажировки'}</h1>
                     <div className='switch'>
@@ -119,8 +122,11 @@ export const MainComponent = () => {
                     />
                 </Plock>
             </div>
-            <div className='right'>
-
+            <div className='filter'>
+                <h1 className='title'>Поиск по хэштегам 😎</h1>
+                <div className='tags'>
+                    <Tag color='red'>#IT</Tag>
+                </div>
             </div>
         </div>
     );

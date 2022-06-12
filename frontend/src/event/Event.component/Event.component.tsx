@@ -6,7 +6,7 @@ import {ComingSoon} from "../../Components/common/ComingSoon/ComingSoon";
 export const EventComponent = () => {
     return(
         <div className='page-event'>
-            <Card disable={true}>
+            <Card stretched={true} disable={true}>
                 <div className='box-event'>
                     <div className='row'>
                         <div className='column'>

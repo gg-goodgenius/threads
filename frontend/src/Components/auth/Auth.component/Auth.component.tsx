@@ -13,7 +13,7 @@ type Props = {
 export const AuthComponent = ({ setIsLogin }: Props) => {
     return (
         <div className='page-auth'>
-            <Card>
+            <Card disable stretched>
                 <div className='card-form'>
                     <div>
                         <img src={icon_auth}/>
@@ -21,18 +21,16 @@ export const AuthComponent = ({ setIsLogin }: Props) => {
                             layout='vertical'
                         >
                             <Form.Item
-                                label='Логин'
                             >
-                                <Input type='text'/>
+                                <Input type='text' placeholder='Логин' />
                             </Form.Item>
 
                             <Form.Item
-                                label='Пароль'
                             >
-                                <Input type='password'/>
+                                <Input type='password' placeholder='Пароль' />
                             </Form.Item>
                             <Form.Item>
-                                <PrimaryButton mode='s'>Войти</PrimaryButton>
+                                <PrimaryButton type='full' mode='s'>Войти</PrimaryButton>
                             </Form.Item>
                         </Form>
                     </div>

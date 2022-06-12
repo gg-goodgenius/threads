@@ -4,12 +4,14 @@ import classNames from "classnames";
 
 type Props = {
     children: React.ReactNode,
-    disable?: boolean
+    disable?: boolean,
+    stretched?: boolean
 }
 
-export const Card = ({ children, disable }: Props) => {
+export const Card = ({ children, disable, stretched }: Props) => {
     const classNameCard = classNames('card', {
-        disable: !!disable
+        disable: !!disable,
+        stretched: !!stretched
     })
     return(
         <div className={classNameCard}>

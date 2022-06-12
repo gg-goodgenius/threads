@@ -1,11 +1,13 @@
 import './scss/index.scss';
 import {Card} from "../../common/Card";
-import {Checkbox, Form, Input} from "antd";
+import {Checkbox, Form, Input, Radio} from "antd";
 
 import icon from './icon.svg';
 import icon_auth from './icon_auth.svg';
 import {PrimaryButton} from "../../common/PrimaryButtton";
 import {Link} from "react-router-dom";
+
+import { ReactComponent as Back} from "../../../icons/back.svg";
 
 type Props = {
     setIsLogin: (e: boolean) => void
@@ -14,26 +16,34 @@ type Props = {
 export const RegComponent = ({ setIsLogin }: Props) => {
     return (
         <div className='page-auth'>
-            <Card>
+            <Card disable stretched>
                 <div className='card-form'>
+                    <div className='header'>
+                        <h1 className='title'>Регистрация</h1>
+                    </div>
                     <div>
                         <Form
                             layout='vertical'
                         >
                             <Form.Item
-                                label='Введите телефон или эл. почту'
                             >
                                 <Input type='text'/>
                             </Form.Item>
                             <Form.Item
-                                label='Придумайте пароль'
                             >
                                 <Input type='password'/>
                             </Form.Item>
                             <Form.Item
-                                label='Придумайте пароль'
                             >
                                 <Input type='password'/>
+                            </Form.Item>
+                            <Form.Item>
+                                <Radio.Group>
+                                    <Radio value={0}>Волонтер</Radio>
+                                    <Radio value={1}>НКО</Radio>
+                                    <Radio value={2}>Представитель бизнеса</Radio>
+                                </Radio.Group>
+
                             </Form.Item>
                             <Form.Item>
                                 <Checkbox>
