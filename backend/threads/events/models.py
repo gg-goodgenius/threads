@@ -103,6 +103,7 @@ class VolunteerEvent(Event):
     organization = models.ForeignKey(verbose_name='Организатор', to=User, related_name='volunteer_events', on_delete=models.CASCADE)
     personal_needed = models.TextField(verbose_name='Вам необходимо иметь c собой', blank=True, null=True)
     bisness_needed = models.TextField(verbose_name='Нам необходимо от бизнесса', blank=True, null=True)
+    motivation = models.TextField(verbose_name='Вы получите от волонтерства', blank=True, null=True)
     date_event = models.DateTimeField(verbose_name='Дата мероприятия', blank=True, null=True)
     skills = models.ManyToManyField(to=Skill, verbose_name='Необходимые навыки')
 
