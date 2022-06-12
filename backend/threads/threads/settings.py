@@ -1,7 +1,7 @@
 from pathlib import Path
 import environ
 env = environ.Env()
-
+import datetime
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(BASE_DIR / '.env')
@@ -115,4 +115,10 @@ GRAPHQL_JWT = {
 }
 
 CSRF_TRUSTED_ORIGINS = ['https://api.threads.goodgenius.ru']
+
+GRAPHQL_JWT = {
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(days=7),
+    "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=7),
+}
 
