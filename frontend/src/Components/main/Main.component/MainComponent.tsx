@@ -19,6 +19,24 @@ export const MainComponent = () => {
                 </div>
                 <Plock>
                     <CardEvent
+                        id={2}
+                        title='test'
+                        dates={['17 Авг']}
+                        tags={[{
+                            color: 'red',
+                            title: 'IT'
+                        }]}
+                        image={'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'}
+                        counter={'28/70'}
+                        photos={
+                            [
+                                'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
+                                'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
+                            ]
+                        }
+                    />
+                    <CardEvent
+                        id={2}
                         title='test'
                         dates={['17 Авг']}
                         tags={[{
@@ -34,6 +52,7 @@ export const MainComponent = () => {
                         }
                     />
                     <CardEvent
+                        id={3}
                         title='test'
                         dates={['17 Авг']}
                         tags={[{
@@ -49,6 +68,24 @@ export const MainComponent = () => {
                         }
                     />
                     <CardEvent
+                        id={2}
+                        title='test'
+                        dates={['17 Авг']}
+                        image='https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'
+                        tags={[{
+                            color: 'red',
+                            title: 'IT'
+                        }]}
+                        counter={'28/70'}
+                        photos={
+                            [
+                                'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
+                                'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
+                            ]
+                        }
+                    />
+                    <CardEvent
+                        id={2}
                         title='test'
                         dates={['17 Авг']}
                         tags={[{
@@ -64,42 +101,14 @@ export const MainComponent = () => {
                         }
                     />
                     <CardEvent
+                        id={2}
                         title='test'
                         dates={['17 Авг']}
                         tags={[{
                             color: 'red',
                             title: 'IT'
                         }]}
-                        counter={'28/70'}
-                        photos={
-                            [
-                                'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                            ]
-                        }
-                    />
-                    <CardEvent
-                        title='test'
-                        dates={['17 Авг']}
-                        tags={[{
-                            color: 'red',
-                            title: 'IT'
-                        }]}
-                        counter={'28/70'}
-                        photos={
-                            [
-                                'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                            ]
-                        }
-                    />
-                    <CardEvent
-                        title='test'
-                        dates={['17 Авг']}
-                        tags={[{
-                            color: 'red',
-                            title: 'IT'
-                        }]}
+                        image={'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'}
                         counter={'28/70'}
                         photos={
                             [

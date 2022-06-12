@@ -20,7 +20,7 @@ export const PrimaryButton = (props: Props) => {
                 color: props.bgColor === '#fff' ? '#000' : '#fff'
             }}
             size='large'
-            block
+            block={props.type === 'full'}
         >
             {props.children}
         </Button>

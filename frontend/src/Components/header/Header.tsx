@@ -4,8 +4,11 @@ import { Tab } from "../common/Tab";
 import icon from "./icon.svg";
 
 import './scss/index.scss'
+import {Button} from "antd";
+import {PrimaryButton} from "../common/PrimaryButtton";
 
 export const Header = () => {
+    const nav = useNavigate();
     return (
         <div className='Header'>
             <div className='logo_container'>
@@ -31,6 +34,7 @@ export const Header = () => {
                 />
 
             </Tabs>
+            <PrimaryButton onClick={() => nav('/auth')}>Войти</PrimaryButton>
         </div>
     );
 }

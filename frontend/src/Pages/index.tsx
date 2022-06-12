@@ -5,6 +5,7 @@ import { About } from "./About";
 import { Page404 } from "./Page404";
 import { Auth } from "./Auth";
 import { Page } from "../Components/common/Page/Page";
+import {Event} from "./Event";
 
 const pages = {
     Main: {
@@ -30,6 +31,10 @@ const pages = {
     Auth: {
         element: <Page><Auth /></Page>,
         path: '/auth'
+    },
+    Event: {
+        element: <Page><Event /></Page>,
+        path: '/event/:id'
     }
 }
 

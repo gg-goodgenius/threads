@@ -12,13 +12,13 @@
   flex-direction: column;
   gap: 21px;
 
-  .title {
+  &.title {
     color: $color-text-primary;
     font-size: 24px;
     padding-left: 86px;
   }
 
-  .caption {
+  &.caption {
     color: $color-grey-100;
     font-size: 20px;
     font-weight: 400;

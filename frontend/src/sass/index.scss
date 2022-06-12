@@ -8,3 +8,16 @@
 body {
   font-family: $base-font;
 }
+
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -5,7 +5,6 @@ import {Form, Input} from "antd";
 import icon from './icon.svg';
 import icon_auth from './icon_auth.svg';
 import {PrimaryButton} from "../../common/PrimaryButtton";
-import {Link} from "react-router-dom";
 
 type Props = {
     setIsLogin: (e: boolean) => void

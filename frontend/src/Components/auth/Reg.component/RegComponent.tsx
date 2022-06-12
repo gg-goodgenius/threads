@@ -41,7 +41,7 @@ export const RegComponent = ({ setIsLogin }: Props) => {
                                 </Checkbox>
                             </Form.Item>
                             <Form.Item>
-                                <PrimaryButton mode='s'>Зарегистрироваться</PrimaryButton>
+                                <PrimaryButton mode='s' type='full'>Зарегистрироваться</PrimaryButton>
                             </Form.Item>
                         </Form>
                     </div>
