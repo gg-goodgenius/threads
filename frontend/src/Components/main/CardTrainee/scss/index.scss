@@ -1,0 +1,41 @@
+@import "src/sass/index";
+
+.card-trainee {
+  width: 235px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  .box-organization {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .organization {
+      font-size: 14px;
+      color: #768396
+    }
+  }
+
+  .preview {
+    width: 100%;
+    height: 110px;
+    border-radius: $border-radius-s;
+  }
+
+  .title {
+    width: 100%;
+    font-size: 16px;
+    font-weight: $font-weight-base;
+    color: $color-primary;
+  }
+
+  .description {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    color: #768396
+  }
+
+}

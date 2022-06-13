@@ -1,0 +1,1 @@
+export {AuthComponent} from './Auth.component';
