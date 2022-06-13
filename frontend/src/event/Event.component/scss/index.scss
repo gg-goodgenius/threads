@@ -15,14 +15,21 @@
       text-align: center;
     }
 
-    .image {
-      border-radius: 16px;
-    }
+    .info {
+      padding: 16px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      .image {
+        border-radius: 16px;
+      }
 
-    .description {
-      font-size: 18px;
-      color: black;
-      text-align: justify;
+      .description {
+        font-size: 18px;
+        color: black;
+        text-align: justify;
+      }
     }
   }
 }
