@@ -8,9 +8,16 @@ from events.models import *
 
 class UserGraphQLType(DjangoObjectType):
     id = graphene.Int()
+    image_url = graphene.String()
+
     class Meta:
         model = User
         description = 'Пользователь'
+
+    def resolve_image_url(self, info):
+        print(dir(info.context))
+        print(info.context.path)
+        return f'{info.context.scheme}://{info.context.get_host()}/media/{self.image}'
 
 
 class GroupGraphQLType(DjangoObjectType):
