@@ -20,7 +20,7 @@ type Props = {
     dates?: string[],
     photos?: string[],
     memberCount?: number | null
-
+    dateEvent?: any
 }
 
 export const CardEvent = (props: Props) => {
@@ -37,7 +37,7 @@ export const CardEvent = (props: Props) => {
                     {props.image && <img className='preview' src={props.image}/>}
                     <h1 className='title'>{props.title}</h1>
                     <div className='dates'>
-                        {props.dates?.map(date => <TagDate>{date}</TagDate>)}
+                        <TagDate>{props.dateEvent}</TagDate>
                     </div>
                     <div className='participates'>
                         {/*{props.photos ? <UsersStack photos={props.photos}/> : <div/>}*/}

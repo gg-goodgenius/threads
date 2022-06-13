@@ -12,38 +12,32 @@ import {Metro} from "../../common/Metro";
 
 type Props = {
     id: number,
-    image?: string,
+    image?: string | null,
     title: string,
-    tags: {
-        color: string,
-        title: string
-    }[],
-    dates: string[],
     photos?: string[],
-    counter: string,
-    organization: {
-        name: string
-    }
-
+    organization?: string | null,
+    description?: string | null,
+    metro?: {
+        name?: string | null,
+        color?: string | null
+    } | null
 }
 
 export const CardTrainee = (props: Props) => {
     return (
-        <Link to={`/event/${props.id}`}>
-            <Card>
+            <Card disable>
                 <div className='card-trainee'>
                     <div className='box-organization'>
-                        <h1 className='organization'>{props.organization.name}</h1>
+                        <h1 className='organization'>{props.organization}</h1>
                         <Favorite/>
                     </div>
                     {props.image && <img className='preview' src={props.image}/>}
-                    <h1 className='title'>Маркетолог</h1>
-                    <Metro label={'Лубянка'} color={'red'} />
+                    <h1 className='title'>{props.title}</h1>
+                    <Metro label={props.metro?.name} color={props.metro?.color} />
                     <span className='description'>
-                        sfvjfdsjkasjfksadhfjkashfdjkh
+                        {props.description}
                     </span>
                 </div>
             </Card>
-        </Link>
     );
 }

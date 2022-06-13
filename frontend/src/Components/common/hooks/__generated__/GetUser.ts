@@ -12,6 +12,7 @@ export interface GetUser_user {
   id: number | null;
   firstName: string;
   lastName: string;
+  image: string | null;
 }
 
 export interface GetUser {

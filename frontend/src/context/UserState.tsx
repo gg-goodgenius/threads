@@ -15,6 +15,7 @@ export const UserContext = createContext<{
 
 interface User {
     id: number
+    image: string | null
 }
 
 type Props = {
@@ -29,7 +30,7 @@ export const UserState = (props: Props) => {
         const fetchUser = async () => {
             const res = await getUser();
             if(res.data?.user?.id) {
-                setUser({ id: res.data.user.id });
+                setUser({ id: res.data.user.id, image: res.data.user.image });
             } else {
                 console.log('error get user')
             }
@@ -43,7 +44,7 @@ export const UserState = (props: Props) => {
         const fetchUser = async () => {
             const res = await getUser();
             if(res.data?.user?.id) {
-                setUser({ id: res.data.user.id });
+                setUser({ id: res.data.user.id, image: res.data.user.image });
             } else {
                 console.log('error get user')
             }

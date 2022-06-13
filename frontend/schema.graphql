@@ -42,6 +42,14 @@ type CreateTagMutation {
     tag: TagGraphQLType
 }
 
+"Создание шаблона"
+type CreateTemplateVolunteerEventMutation {
+    "Результат"
+    ok: Boolean
+    "Мероприятие"
+    volunteerEvent: VolunteerEventGraphQLType
+}
+
 type CreateVolunteerEventMutation {
     volunteerEvent: VolunteerEventGraphQLType
 }
@@ -126,7 +134,7 @@ type InternEventGraphQLType {
     memberCount: Int
     members: [UserGraphQLType!]!
     metro: MetroGraphQLType
-    organization: UserGraphQLType!
+    organization: String!
     paycheck: Int!
     provide: String
     skillsExtra: String
@@ -136,6 +144,7 @@ type InternEventGraphQLType {
 
 "Станция метро"
 type MetroGraphQLType {
+    color: String!
     id: Int
     interneventSet: [InternEventGraphQLType!]!
     name: String!
@@ -150,6 +159,11 @@ type Mutation {
     createReport(input: CreateReportInput!): CreateReportMutation
     createShedule(input: CreateScheduleInput!): CreateScheduleMutation
     createTagEvent(input: CreateTagInput!): CreateTagMutation
+    "Создание шаблона"
+    createTemplateVolunteerEvent(
+        "ID мероприятия"
+        id: Int!
+    ): CreateTemplateVolunteerEventMutation
     createVolunteerEvent(input: CreateVolunteerEventInput!): CreateVolunteerEventMutation
     deleteContact(id: ID!): DeleteContactMutation
     deleteInternEvent(id: ID!): DeleteInternEventMutation
@@ -202,43 +216,43 @@ type Query {
     "Контакт"
     getContact(id: Int): ContactGraphQLType
     "Список контактов"
-    getContacts: [ContactGraphQLType]
+    getContacts(limit: Int, offset: Int): [ContactGraphQLType]
     "Группа пользователей"
     getGroup(id: Int): GroupGraphQLType
     "Список групп пользователей"
-    getGroups: [GroupGraphQLType]
+    getGroups(limit: Int, offset: Int): [GroupGraphQLType]
     "Стажировка"
     getInternEvent(id: Int): InternEventGraphQLType
     "Список стажировок"
-    getInternEvents: [InternEventGraphQLType]
+    getInternEvents(limit: Int, offset: Int, tags: [Int]): [InternEventGraphQLType]
     "Список станций метро"
-    getMetres: [MetroGraphQLType]
+    getMetres(limit: Int, offset: Int): [MetroGraphQLType]
     "Метро"
     getMetro(id: Int): MetroGraphQLType
     "Список фотографий"
-    getPhotes: [PhotoGraphQLType]
+    getPhotes(limit: Int, offset: Int): [PhotoGraphQLType]
     "Фотография"
     getPhoto(id: Int): PhotoGraphQLType
     "Отчет"
     getReport(id: Int): ReportGraphQLType
     "Список отчетов"
-    getReports: [ReportGraphQLType]
+    getReports(limit: Int, offset: Int): [ReportGraphQLType]
     "Расписание"
     getSchedule(id: Int): ScheduleGraphQLType
     "Список пунктов расписания"
-    getSchedules: [ScheduleGraphQLType]
+    getSchedules(limit: Int, offset: Int): [ScheduleGraphQLType]
     "Тег"
     getTag(id: Int): TagGraphQLType
     "Список тегов"
-    getTags: [TagGraphQLType]
+    getTags(limit: Int, offset: Int): [TagGraphQLType]
     "Пользователь"
     getUser(id: Int): UserGraphQLType
     "Список пользователей"
-    getUsers: [UserGraphQLType]
+    getUsers(limit: Int, offset: Int): [UserGraphQLType]
     "Волонтерство"
     getVolunteerEvent(id: Int): VolunteerEventGraphQLType
     "Список волонтерств"
-    getVolunteerEvents: [VolunteerEventGraphQLType]
+    getVolunteerEvents(limit: Int, offset: Int, tags: [Int]): [VolunteerEventGraphQLType]
 }
 
 type Refresh {
@@ -321,7 +335,6 @@ type UserGraphQLType {
     groups: [GroupGraphQLType!]!
     id: Int
     image: String
-    internEvents: [InternEventGraphQLType!]!
     interneventSet: [InternEventGraphQLType!]!
     "Отметьте, если пользователь должен считаться активным. Уберите эту отметку вместо удаления учётной записи."
     isActive: Boolean!
@@ -337,7 +350,6 @@ type UserGraphQLType {
     status: String
     telegram: String!
     typeAccount: Int!
-    volunteerEvents: [VolunteerEventGraphQLType!]!
     volunteereventSet: [VolunteerEventGraphQLType!]!
 }
 
@@ -365,7 +377,7 @@ type VolunteerEventGraphQLType {
     members: [UserGraphQLType!]!
     metro: MetroGraphQLType
     motivation: String
-    organization: UserGraphQLType!
+    organization: String!
     personalNeeded: String
     photes: [PhotoGraphQLType!]!
     provide: String
@@ -423,7 +435,7 @@ input CreateInternEventInput {
     isTemplate: Boolean
     members: [ID]!
     metro: ID
-    organization: ID!
+    organization: String
     paycheck: Int
     provide: String
     skills: [ID]!
@@ -433,6 +445,7 @@ input CreateInternEventInput {
 }
 
 input CreateMetroInput {
+    color: String
     interneventSet: [ID]
     name: String!
     volunteereventSet: [ID]
@@ -480,7 +493,7 @@ input CreateVolunteerEventInput {
     members: [ID]!
     metro: ID
     motivation: String
-    organization: ID!
+    organization: String
     personalNeeded: String
     photes: [ID]
     provide: String
@@ -508,7 +521,7 @@ input UpdateInternEventInput {
     isTemplate: Boolean
     members: [ID]!
     metro: ID
-    organization: ID!
+    organization: String
     paycheck: Int
     provide: String
     skills: [ID]!
@@ -518,6 +531,7 @@ input UpdateInternEventInput {
 }
 
 input UpdateMetroInput {
+    color: String
     interneventSet: [ID]
     name: String!
     volunteereventSet: [ID]
@@ -565,7 +579,7 @@ input UpdateVolunteerEventInput {
     members: [ID]!
     metro: ID
     motivation: String
-    organization: ID!
+    organization: String
     personalNeeded: String
     photes: [ID]
     provide: String

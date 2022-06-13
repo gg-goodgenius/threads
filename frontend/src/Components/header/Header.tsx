@@ -39,7 +39,7 @@ export const Header = () => {
                 />
 
             </Tabs>
-            {!user?.id ? <PrimaryButton onClick={() => nav('/auth')}>Войти</PrimaryButton> : <Avatar />}
+            {!user?.id ? <PrimaryButton onClick={() => nav('/auth')}>Войти</PrimaryButton> : <Avatar src={user.image} />}
         </div>
     );
 }

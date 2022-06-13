@@ -9,9 +9,13 @@ import {Avatar, Radio} from "antd";
 import {CardTrainee} from "../CardTrainee";
 import { GetEvents_events } from "../hooks/__generated__/GetEvents";
 import { FilterContainer } from "../Filter.container";
+import { GetEventsTrainee_events } from "../hooks/__generated__/GetEventsTrainee";
 
 type Props = {
     events: (GetEvents_events | null)[],
+    eventsTrainee: (GetEventsTrainee_events | null)[],
+    selectedTags: number[],
+    setSelectedTags: (e: number[]) => void
 }
 
 export const MainComponent = (props: Props) => {
@@ -39,6 +43,7 @@ export const MainComponent = (props: Props) => {
                                             image={event.image}
                                             tags={event.tags}
                                             memberCount={event.memberCount}
+                                            dateEvent={event.dateEvent}
                                             // photos={event.members.map(m => m.image)}
                                 />
                             }
@@ -46,138 +51,30 @@ export const MainComponent = (props: Props) => {
                     </Plock>
                     :
                     <Plock>
-                        <CardTrainee
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            image={'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
+                        {props.eventsTrainee.map((event) => {
+                            if(event?.id) {
+                                return <CardTrainee
+                                    id={event.id}
+                                    title={event.title}
+                                    image={event.image}
+                                    description={event.description}
+                                    organization={event.organization}
+                                    metro={event.metro}
+                                    // tags={event.tags}
+                                    // photos={event.members.map(m => m.image)}
+                                />
                             }
-                            organization={{
-                                name: 'test'
-                            }}
-                        />
-                        <CardTrainee
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                            organization={{
-                                name: 'test'
-                            }}
-                        />
-                        <CardTrainee
-                            id={3}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                            organization={{
-                                name: 'test'
-                            }}
-                        />
-                        <CardTrainee
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            image='https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                            organization={{
-                                name: 'test'
-                            }}
-                        />
-                        <CardTrainee
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                            organization={{
-                                name: 'test'
-                            }}
-                        />
-                        <CardTrainee
-                            id={2}
-                            title='test'
-                            dates={['17 Авг']}
-                            tags={[{
-                                color: 'red',
-                                title: 'IT'
-                            }]}
-                            image={'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg'}
-                            counter={'28/70'}
-                            photos={
-                                [
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg',
-                                    'https://cdnn21.img.ria.ru/images/07e6/04/0c/1783086041_0:104:3096:1846_1920x0_80_0_0_a41a71b97d0ec70f22b5812c81f42a6c.jpg'
-                                ]
-                            }
-                            organization={{
-                                name: 'test'
-                            }}
-                        />
+                        })}
                     </Plock>
                 }
             </div>
             <div className='filter'>
-                <FilterContainer isTrainee={isTrainee} />
+                <FilterContainer
+                    isTrainee={isTrainee}
+                    selectedTags={props.selectedTags}
+                    setSelectedTags={props.setSelectedTags}
+                />
             </div>
-            {/*<div className='filter'>*/}
-            {/*    <h1 className='title'>Фильтры</h1>*/}
-            {/*    <div>*/}
-            {/*        <Radio.Group name='trainee_type'>*/}
-            {/*            <Radio>Оплачиваемые стажировки</Radio>*/}
-            {/*            <Radio>Стажировки без оплаты</Radio>*/}
-            {/*        </Radio.Group>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </div>
     );
 };

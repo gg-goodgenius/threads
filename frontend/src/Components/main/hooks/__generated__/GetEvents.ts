@@ -39,3 +39,7 @@ export interface GetEvents {
    */
   events: (GetEvents_events | null)[] | null;
 }
+
+export interface GetEventsVariables {
+  tags?: (number | null)[] | null;
+}
