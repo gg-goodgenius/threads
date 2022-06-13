@@ -125,13 +125,17 @@ class VolunteerEventManager(models.Manager):
 
     def load_mosvolonter(self):
         for event, tags in get_event():
-            u = User.objects.filter(is_superuser=True).first()
-            ve = VolunteerEvent(organization=u, **event)
-            ve.save()
-            for tag in tags:
-                (t, created) = Tag.objects.get_or_create(name=tag)
-                ve.tags.add(t)
-            ve.save()
+            ve = VolunteerEvent.objects.filter(title = event.title).first()
+            if ve:
+                ve.description_other = event.description_other
+                ve.save()
+            else:
+                ve = VolunteerEvent(**event)
+                ve.save()
+                for tag in tags:
+                    (t, created) = Tag.objects.get_or_create(name=tag)
+                    ve.tags.add(t)
+                ve.save()
         
 
 class VolunteerEvent(Event):

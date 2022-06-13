@@ -15,9 +15,7 @@ class UserGraphQLType(DjangoObjectType):
         description = 'Пользователь'
 
     def resolve_image_url(self, info):
-        print(dir(info.context))
-        print(info.context.path)
-        return f'{info.context.scheme}://{info.context.get_host()}/media/{self.image}'
+        return self.image.url
 
 
 class GroupGraphQLType(DjangoObjectType):
