@@ -120,22 +120,26 @@ class Event(models.Model):
         self.save()
         return self
 
+
+    def subscribe(self, user):
+        self.members.add(user)
+        self.save()
+
+
+    def have_member(self, user):
+        return (user in self.members.all())
+
     
 class VolunteerEventManager(models.Manager):
 
     def load_mosvolonter(self):
         for event, tags in get_event():
-            ve = VolunteerEvent.objects.filter(title = event.title).first()
-            if ve:
-                ve.description_other = event.description_other
-                ve.save()
-            else:
-                ve = VolunteerEvent(**event)
-                ve.save()
-                for tag in tags:
-                    (t, created) = Tag.objects.get_or_create(name=tag)
-                    ve.tags.add(t)
-                ve.save()
+            ve = VolunteerEvent(**event)
+            ve.save()
+            for tag in tags:
+                (t, created) = Tag.objects.get_or_create(name=tag)
+                ve.tags.add(t)
+            ve.save()
         
 
 class VolunteerEvent(Event):

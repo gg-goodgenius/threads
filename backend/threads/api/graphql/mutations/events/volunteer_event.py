@@ -35,3 +35,21 @@ class CreateTemplateVolunteerEventMutation(graphene.Mutation):
         except Exception as e:
             raise 
         return CreateTemplateVolunteerEventMutation(ok=ok, volunteer_event=tmpl_ve)
+
+
+class SubscribeEventMutation(graphene.Mutation):
+    '''Подписаться на ивент  '''
+    class Arguments:
+        id = graphene.Int(required=True, description='ID мероприятия')
+    
+    ok = graphene.Boolean(description='Результат')
+
+    @classmethod
+    def mutate(cls, root, info, id) -> graphene.Mutation:
+        try:
+            ve = VolunteerEvent.objects.get(pk=id)
+            tmpl_ve = ve.subscribe(info.context.user)
+            ok = True
+        except Exception as e:
+            raise 
+        return CreateTemplateVolunteerEventMutation(ok=ok)

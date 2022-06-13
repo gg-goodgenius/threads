@@ -28,6 +28,7 @@ class GroupGraphQLType(DjangoObjectType):
 class VolunteerEventGraphQLType(DjangoObjectType):
     id = graphene.Int()
     date_event_str = graphene.String()
+    is_subscribe = graphene.Boolean()
 
     class Meta:
         model = VolunteerEvent
@@ -39,6 +40,9 @@ class VolunteerEventGraphQLType(DjangoObjectType):
 
     def resolve_date_event_str(self, info):
         return self.date_event_str()
+
+    def resolve_is_subscribe(self, info):
+        return self.have_member(info.context.user)
         
 
 
