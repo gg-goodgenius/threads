@@ -13,11 +13,9 @@ class Tag(models.Model):
 
     def get_random_color(self) -> str:
         self.color = "".join([random.choice('0123456789ABCDEF') for j in range(6)])
+        self.save()
         return self.color
 
-    def save(self,*args, **kwargs):
-        self.get_random_color()
-        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Хэштег'
@@ -51,10 +49,16 @@ class Metro(models.Model):
     ''' Станции метро '''
 
     name = models.CharField(verbose_name='Станция метро', max_length=100)
+    color = models.CharField(max_length=6, verbose_name='Цвет', default="FF0000")
 
     class Meta:
         verbose_name = 'Станция метро'
         verbose_name_plural = 'Станции метро'
+
+    def get_random_color(self) -> str:
+        self.color = "".join([random.choice('0123456789ABCDEF') for j in range(6)])
+        self.save()
+        return self.color
 
     def __str__(self) -> str:
         return f'{self.name}'
@@ -113,13 +117,21 @@ class Event(models.Model):
         self.save()
         return self
 
+
+    def subscribe(self, user):
+        self.members.add(user)
+        self.save()
+
+
+    def have_member(self, user):
+        return (user in self.members.all())
+
     
 class VolunteerEventManager(models.Manager):
 
     def load_mosvolonter(self):
         for event, tags in get_event():
-            u = User.objects.filter(is_superuser=True).first()
-            ve = VolunteerEvent(organization=u, **event)
+            ve = VolunteerEvent(**event)
             ve.save()
             for tag in tags:
                 (t, created) = Tag.objects.get_or_create(name=tag)
@@ -130,7 +142,7 @@ class VolunteerEventManager(models.Manager):
 class VolunteerEvent(Event):
     ''' Мероприятия для волонтеров '''
     # User = apps.get_model('core', 'User')
-    organization = models.ForeignKey(verbose_name='Организатор', to=User, related_name='volunteer_events', on_delete=models.CASCADE)
+    organization = models.CharField(max_length=300, verbose_name='Организации', default="Мосволонтер")
     personal_needed = models.TextField(verbose_name='Вам необходимо иметь c собой', blank=True, null=True)
     bisness_needed = models.TextField(verbose_name='Нам необходимо от бизнесса', blank=True, null=True)
     motivation = models.TextField(verbose_name='Вы получите от волонтерства', blank=True, null=True)
@@ -138,6 +150,9 @@ class VolunteerEvent(Event):
     skills = models.ManyToManyField(to=Skill, verbose_name='Необходимые навыки')
 
     objects = VolunteerEventManager()
+
+    def date_event_str(self):
+        return self.date_event.strftime("%d.%m.%Y")
 
     class Meta:
         verbose_name = 'Волотерство'
@@ -148,7 +163,7 @@ class VolunteerEvent(Event):
 class InternEvent(Event):
     ''' Мероприятия для стажеров '''
     # User = apps.get_model('core', 'User')
-    organization = models.ForeignKey(verbose_name='Компания', to=User, related_name='intern_events', on_delete=models.CASCADE)
+    organization = models.CharField(max_length=300, verbose_name='Организации', default="Мосволонтер")
     skills_extra = models.TextField(verbose_name='Плюсом будет', blank=True, null=True)
     paycheck = models.IntegerField(verbose_name='Запрлата', default=0)
     skills = models.ManyToManyField(to=Skill, verbose_name='Необходимые навыки')

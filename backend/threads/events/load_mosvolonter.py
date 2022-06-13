@@ -17,7 +17,7 @@ def get_detail(url):
     s = requests.Session()
     r = s.get(fullurl)
     soup = BeautifulSoup(r.text, 'lxml')
-    return str(soup.select_one('div.mos-event_txt'))
+    return str(soup.select_one('div.mos-event_txt').text)
     
 
 

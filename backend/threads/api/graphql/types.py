@@ -8,9 +8,14 @@ from events.models import *
 
 class UserGraphQLType(DjangoObjectType):
     id = graphene.Int()
+    image_url = graphene.String()
+
     class Meta:
         model = User
         description = 'Пользователь'
+
+    def resolve_image_url(self, info):
+        return self.image.url
 
 
 class GroupGraphQLType(DjangoObjectType):
@@ -22,6 +27,9 @@ class GroupGraphQLType(DjangoObjectType):
 
 class VolunteerEventGraphQLType(DjangoObjectType):
     id = graphene.Int()
+    date_event_str = graphene.String()
+    is_subscribe = graphene.Boolean()
+
     class Meta:
         model = VolunteerEvent
         description = 'Волонтерство'
@@ -29,6 +37,12 @@ class VolunteerEventGraphQLType(DjangoObjectType):
     member_count = graphene.Int(description='Количество учатсников')
     def resolve_member_count(self, info):
         return self.get_coutn_members()
+
+    def resolve_date_event_str(self, info):
+        return self.date_event_str()
+
+    def resolve_is_subscribe(self, info):
+        return self.have_member(info.context.user)
         
 
 

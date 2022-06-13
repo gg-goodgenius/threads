@@ -6,12 +6,12 @@ import datetime
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(BASE_DIR / '.env')
 
-print(BASE_DIR.parent)
 SECRET_KEY = env.str('SECRET_KEY', default='')
 DEBUG = env.bool('DEBUG', default=True)
 
 ALLOWED_HOSTS = [env.str('ALLOWED_HOSTS', default='127.0.0.1')]
 ADMINSITE = env.bool('ADMINSITE', default=False)
+TELEGRAM_TOKEN = env.str('TELEGRAM_TOKEN', default="")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -137,3 +137,6 @@ CORS_ALLOW_METHODS = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_ALL_CREDENTENALS =True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
