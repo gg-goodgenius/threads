@@ -16,9 +16,6 @@ class Tag(models.Model):
         self.save()
         return self.color
 
-    def save(self,*args, **kwargs):
-        self.get_random_color()
-        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Хэштег'
