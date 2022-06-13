@@ -2,10 +2,12 @@ import {EventComponent} from "../Event.component";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useGetEvent } from "../hooks/useGetEvent";
+import { useSubscribeEvent } from "../hooks/useSubscribeEvent";
 
 export const EventContainer = () => {
     const {getEvent} = useGetEvent();
     const [event, setEvent] = useState();
+    const {subscribeEvent} = useSubscribeEvent();
     const {id} = useParams();
 
     useEffect(() => {
@@ -22,5 +24,5 @@ export const EventContainer = () => {
         fetchEvent().then()
     }, [])
 
-    return(<EventComponent event={event} />);
+    return(<EventComponent setEvent={setEvent} subscribeEvent={subscribeEvent} event={event} />);
 }

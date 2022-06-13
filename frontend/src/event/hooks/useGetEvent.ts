@@ -1,7 +1,9 @@
 import { gql, useLazyQuery } from "@apollo/client";
 
 export const useGetEvent = () => {
-    const [getEvent] = useLazyQuery(GET_EVENT);
+    const [getEvent] = useLazyQuery(GET_EVENT, {
+        fetchPolicy: 'network-only'
+    });
     return {getEvent}
 }
 
@@ -21,6 +23,7 @@ const GET_EVENT = gql`
                 color
             }
             descriptionOther
+            isSubscribe
         }
     }
 `;

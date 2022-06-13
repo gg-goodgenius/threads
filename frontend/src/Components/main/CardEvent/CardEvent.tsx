@@ -8,6 +8,7 @@ import {ReactComponent as Check} from '../../../icons/check.svg';
 import {ReactComponent as Favorite} from "../../../icons/Favorite.svg";
 import {ReactComponent as inFavorite} from "../../../icons/inFavorite.svg";
 import {Link} from "react-router-dom";
+import moment from "moment";
 
 type Props = {
     id: number,
@@ -37,7 +38,7 @@ export const CardEvent = (props: Props) => {
                     {props.image && <img className='preview' src={props.image}/>}
                     <h1 className='title'>{props.title}</h1>
                     <div className='dates'>
-                        <TagDate>{props.dateEvent}</TagDate>
+                        <TagDate>{moment(props.dateEvent).format('MMMM Do')}</TagDate>
                     </div>
                     <div className='participates'>
                         {/*{props.photos ? <UsersStack photos={props.photos}/> : <div/>}*/}

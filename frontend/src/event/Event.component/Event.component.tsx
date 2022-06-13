@@ -6,6 +6,8 @@ import { PrimaryButton } from "../../Components/common/PrimaryButtton";
 
 type Props = {
     event: any,
+    subscribeEvent: any,
+    setEvent: any
 }
 
 export const EventComponent = (props: Props) => {
@@ -20,7 +22,17 @@ export const EventComponent = (props: Props) => {
                             {props.event?.descriptionOther}
                         </span>
                     </div>
-                    <PrimaryButton>Записаться</PrimaryButton>
+                    {!props.event?.isSubscribe ? <PrimaryButton onClick={async () => {
+                        await props.subscribeEvent({
+                            variables: {
+                                id: props.event.id
+                            }
+                        })
+                        props.setEvent({
+                            ...props.event,
+                            isSubscribe: true
+                        })
+                    }}>Записаться</PrimaryButton> : <span>Вы уже записались</span>}
                 </div>
             </Card>
         </div>
