@@ -11,6 +11,7 @@ DEBUG = env.bool('DEBUG', default=True)
 
 ALLOWED_HOSTS = [env.str('ALLOWED_HOSTS', default='127.0.0.1')]
 ADMINSITE = env.bool('ADMINSITE', default=False)
+TELEGRAM_TOKEN = env.str('TELEGRAM_TOKEN', default="")
 
 INSTALLED_APPS = [
     'django.contrib.admin',

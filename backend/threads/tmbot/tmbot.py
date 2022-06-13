@@ -1,15 +1,13 @@
-"""
- This is a echo bot.
- It echoes any incoming text messages.
- """
-
 import logging
-
+import environ
+import os
 from aiogram import Bot, Dispatcher, executor, types
 from pathlib import Path
 from aiogram.dispatcher.filters import Text
 
-API_TOKEN = "5341845782:AAEecJVxbM_0nIqZj1_xcOc5lrYCymQw3XM"
+env = environ.Env()
+environ.Env.read_env(os.path.split(os.path.abspath(__file__))[0]+'\..\.env')
+API_TOKEN = env.str('TELEGRAM_TOKEN', default="")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -59,6 +57,8 @@ async def new_event(query: types.CallbackQuery):
     buttons.add(types.InlineKeyboardButton("Фин. отчет(бизнес)", url="https://link-to-bissnes-acc.ru/"))
     await bot.send_photo(query["from"]["id"], new_image, text, reply_markup=buttons)
 
-
-if __name__ == "__main__":
+def start():
     executor.start_polling(dp, skip_updates=True)
+
+if __name__ == '__main__':
+    start()
