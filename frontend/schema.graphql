@@ -185,6 +185,11 @@ type Mutation {
         "Тип пользователя (0 - волонтер, 1 - НКО, 2 - представитель бизнеса)"
         typeAccount: Int!
     ): RegistrationUser
+    "Подписаться на ивент  "
+    subscribeEvent(
+        "ID мероприятия"
+        id: Int!
+    ): SubscribeEventMutation
     updateContact(id: ID!, input: UpdateContactInput!): UpdateContactMutation
     updateInternEvent(id: ID!, input: UpdateInternEventInput!): UpdateInternEventMutation
     updateMetro(id: ID!, input: UpdateMetroInput!): UpdateMetroMutation
@@ -224,7 +229,7 @@ type Query {
     "Стажировка"
     getInternEvent(id: Int): InternEventGraphQLType
     "Список стажировок"
-    getInternEvents(limit: Int, offset: Int, tags: [Int]): [InternEventGraphQLType]
+    getInternEvents(limit: Int, metro: [Int], offset: Int, tags: [Int]): [InternEventGraphQLType]
     "Список станций метро"
     getMetres(limit: Int, offset: Int): [MetroGraphQLType]
     "Метро"
@@ -252,7 +257,7 @@ type Query {
     "Волонтерство"
     getVolunteerEvent(id: Int): VolunteerEventGraphQLType
     "Список волонтерств"
-    getVolunteerEvents(limit: Int, offset: Int, tags: [Int]): [VolunteerEventGraphQLType]
+    getVolunteerEvents(limit: Int, metro: [Int], offset: Int, tags: [Int]): [VolunteerEventGraphQLType]
 }
 
 type Refresh {
@@ -282,6 +287,12 @@ type ScheduleGraphQLType {
     timedate: DateTime!
     value: String!
     volunteerEvent: VolunteerEventGraphQLType!
+}
+
+"Подписаться на ивент  "
+type SubscribeEventMutation {
+    "Результат"
+    ok: Boolean
 }
 
 "Тег"
@@ -335,6 +346,7 @@ type UserGraphQLType {
     groups: [GroupGraphQLType!]!
     id: Int
     image: String
+    imageUrl: String
     interneventSet: [InternEventGraphQLType!]!
     "Отметьте, если пользователь должен считаться активным. Уберите эту отметку вместо удаления учётной записи."
     isActive: Boolean!
@@ -365,12 +377,14 @@ type VolunteerEventGraphQLType {
     contacts: [ContactGraphQLType!]!
     dateEndRequest: Date
     dateEvent: DateTime
+    dateEventStr: String
     dateStartRequest: Date
     description: String
     descriptionOther: String
     events: [ScheduleGraphQLType!]!
     id: Int
     image: String
+    isSubscribe: Boolean
     isTemplate: Boolean!
     "Количество учатсников"
     memberCount: Int

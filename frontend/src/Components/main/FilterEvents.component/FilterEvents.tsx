@@ -1,11 +1,16 @@
 import './scss/index.scss'
 import { Tag } from "../../common/Tag";
 import './scss/index.scss'
+import { Checkbox } from "antd";
+import Avatar from "antd/es/avatar/avatar";
 
 type Props = {
     tags: any[],
+    metres: any[],
     selectedTags: number[],
-    setSelectedTags: (e: number[]) => void
+    setSelectedTags: (e: number[]) => void,
+    setSelectedMetro: (e: number[]) => void,
+    selectedMetro: number[]
 }
 
 export const FilterEvents = (props : Props) => {
@@ -19,10 +24,38 @@ export const FilterEvents = (props : Props) => {
                         onClick={() => {
                             const tags = [...props.selectedTags, t?.id];
                             props.setSelectedTags(tags)
+                            if(props.selectedTags.includes(t.id)) {
+                                props.setSelectedTags(props.selectedTags.filter(e => e != t.id))
+                            } else {
+                                const tags = [...props.selectedTags, t.id];
+                                props.setSelectedTags(tags)
+                            }
                         }}
                     >
                         {t?.name}
                     </Tag>)}
+            </div>
+            <h1 className='title'>Поиск по станциям метро</h1>
+            <div className='metro'>
+                {props.metres.map(t =>
+                    <div>
+                        <Checkbox
+                            onClick={() => {
+                                if(props.selectedMetro.includes(t.id)) {
+                                    props.setSelectedMetro(props.selectedMetro.filter(e => e != t.id))
+                                } else {
+                                    const newMetro = [...props.selectedMetro, t.id];
+                                    props.setSelectedMetro(newMetro)
+                                }
+                            }}
+                        >
+                            <Avatar size={18} style={{
+                                marginRight: 4,
+                                backgroundColor: '#' + t.color
+                            }} />{t?.name}
+                        </Checkbox>
+                    </div>)
+                }
             </div>
         </div>
     );

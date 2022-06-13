@@ -8,8 +8,8 @@ export const useGetEvents = () => {
 
 
 const GET_EVENTS = gql`
-    query GetEvents($tags: [Int]) {
-        events: getVolunteerEvents(tags: $tags) {
+    query GetEvents($tags: [Int],$metro: [Int]) {
+        events: getVolunteerEvents(tags: $tags, metro: $metro) {
             id
             image
             title

@@ -15,7 +15,9 @@ type Props = {
     events: (GetEvents_events | null)[],
     eventsTrainee: (GetEventsTrainee_events | null)[],
     selectedTags: number[],
-    setSelectedTags: (e: number[]) => void
+    setSelectedTags: (e: number[]) => void,
+    setSelectedMetro: (e: number[]) => void,
+    selectedMetro: number[]
 }
 
 export const MainComponent = (props: Props) => {
@@ -73,6 +75,8 @@ export const MainComponent = (props: Props) => {
                     isTrainee={isTrainee}
                     selectedTags={props.selectedTags}
                     setSelectedTags={props.setSelectedTags}
+                    selectedMetro={props.selectedMetro}
+                    setSelectedMetro={props.setSelectedMetro}
                 />
             </div>
         </div>

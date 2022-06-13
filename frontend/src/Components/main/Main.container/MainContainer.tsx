@@ -7,6 +7,7 @@ import { GetEventsTrainee_events } from "../hooks/__generated__/GetEventsTrainee
 
 export const MainContainer = () => {
     const [selectedTags, setSelectedTags] = useState<number[]>([])
+    const [selectedMetro, setSelectedMetro] = useState<number[]>([]);
     const [events, setEvents] = useState<(GetEvents_events | null)[]>([]);
     const [eventsTrainee, setEventsTrainee] = useState<(GetEventsTrainee_events | null)[]>([]);
     const { getEvents } = useGetEvents();
@@ -31,7 +32,8 @@ export const MainContainer = () => {
         const fetchEvents = async () => {
             const resultEvents = await getEvents({
                 variables: {
-                    tags: selectedTags
+                    tags: selectedTags,
+                    metro: selectedMetro
                 }
             });
             if(resultEvents.data?.events) {
@@ -39,7 +41,7 @@ export const MainContainer = () => {
             }
         }
         fetchEvents().then()
-    }, [selectedTags])
+    }, [selectedTags, selectedMetro])
 
     return(
         <MainComponent
@@ -47,6 +49,8 @@ export const MainContainer = () => {
             eventsTrainee={eventsTrainee}
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
+            selectedMetro={selectedMetro}
+            setSelectedMetro={setSelectedMetro}
         />
     );
 }
